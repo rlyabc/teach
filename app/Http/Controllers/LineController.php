@@ -35,7 +35,7 @@ class LineController extends Controller
     protected  $refreshToken='refresh_token';
     protected  $channelId='1656575554';
     protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
-    protected  $callbackUrl='http://5c6e-222-211-175-138.ngrok.io/auth';
+    protected  $callbackUrl='https://guarded-spire-83204.herokuapp.com/auth';
 
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
