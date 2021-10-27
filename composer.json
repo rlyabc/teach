@@ -15,7 +15,8 @@
         "paragonie/random_compat": "2.*",
         "paragonie/sodium_compat": "^1.17",
         "socialiteproviders/line": "v2.1",
-        "ext-pcntl":"*"
+        "ext-pcntl": "*",
+        "memcahe-pcntl": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
