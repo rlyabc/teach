@@ -88,7 +88,11 @@ class LineController extends Controller
             }
             unset($_SESSION[$this->lineWebLoginState]);
 
-            $token=$this->getAccessToken($code);
+            $curlRes=$this->getAccessToken($code);
+            if(!empty($curlRes['code'])){
+                return $curlRes['msg'];
+            }
+            $token=$curlRes;
             if(!$token){
                 throw new \Exception('获取token失败');
             }
@@ -163,10 +167,9 @@ class LineController extends Controller
         $header=[
             'Content-Type:application/x-www-form-urlencoded'
         ];
-        $curlRes=$this->curl($this->lineBaseUrl,$params,1,1,$header);
-        if(!empty($curlRes['code'])){
-            return '';
-        }
+       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1,$header);
+
+
 
     }
 
