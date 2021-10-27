@@ -1,0 +1,460 @@
+2020-12-22 07:28:15 pid:1 Exception: You can't send(object) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Object(Workerman\Connection\TcpConnection), Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(73): Workerman\Connection\TcpConnection->send(Object(Workerman\Connection\TcpConnection))
+#2 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '44')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\laravel552\socket\ws_message_notify.php(190): Workerman\Worker::runAll()
+#9 {main}
+2020-12-22 07:28:15 pid:1 Worker process terminated
+2020-12-22 07:30:10 pid:1 Exception: You can't send(NULL) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(NULL, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(73): Workerman\Connection\TcpConnection->send(NULL)
+#2 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '[object Object]')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\laravel552\socket\ws_message_notify.php(190): Workerman\Worker::runAll()
+#9 {main}
+2020-12-22 07:30:10 pid:1 Worker process terminated
+2020-12-22 07:54:48 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(73): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '[object Object]')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\laravel552\socket\ws_message_notify.php(190): Workerman\Worker::runAll()
+#9 {main}
+2020-12-22 07:54:48 pid:1 Worker process terminated
+2020-12-22 08:15:42 pid:1 Exception: type empty in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1541
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1829): Workerman\MySQL\Connection->build()
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(177): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(83): auth_user('44')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(187): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:15:42 pid:1 Worker process terminated
+2020-12-22 08:17:17 pid:1 Error: Call to a member function send() on integer in D:\wamp64\www\laravel552\socket\ws_message_notify.php:155
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\ws_message_notify.php(47): sendMessageByUid(44, Array)
+#1 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#7 D:\wamp64\www\laravel552\socket\ws_message_notify.php(188): Workerman\Worker::runAll()
+#8 {main}
+2020-12-22 08:17:17 pid:1 Worker process terminated
+2020-12-22 08:18:21 pid:1 Error: Call to a member function send() on integer in D:\wamp64\www\laravel552\socket\ws_message_notify.php:155
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\ws_message_notify.php(47): sendMessageByUid(44, Array)
+#1 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #33)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#7 D:\wamp64\www\laravel552\socket\ws_message_notify.php(188): Workerman\Worker::runAll()
+#8 {main}
+2020-12-22 08:18:21 pid:1 Worker process terminated
+2020-12-22 08:21:37 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(155): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(47): sendMessageByUid(44, Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(188): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:21:37 pid:1 Worker process terminated
+2020-12-22 08:25:07 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(133): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(40): broadcast(Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #35)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(188): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:25:07 pid:1 Worker process terminated
+2020-12-22 08:39:00 pid:1 Exception: type empty in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1541
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1829): Workerman\MySQL\Connection->build()
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(179): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(85): auth_user('44')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(189): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:39:00 pid:1 Worker process terminated
+2020-12-22 08:40:09 pid:1 Exception: type empty in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1541
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1829): Workerman\MySQL\Connection->build()
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(179): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(85): auth_user('44')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(189): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:40:09 pid:1 Worker process terminated
+2020-12-22 08:43:41 pid:1 Exception: type empty in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1541
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1829): Workerman\MySQL\Connection->build()
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(179): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(85): auth_user('44')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(189): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:43:41 pid:1 Worker process terminated
+2020-12-22 08:46:32 pid:1 Exception: type empty in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1541
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1829): Workerman\MySQL\Connection->build()
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(180): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(85): auth_user('44')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(190): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 08:46:32 pid:1 Worker process terminated
+2020-12-22 09:05:08 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(95): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #27)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\laravel552\socket\ws_message_notify.php(191): Workerman\Worker::runAll()
+#9 {main}
+2020-12-22 09:05:08 pid:1 Worker process terminated
+2020-12-22 09:13:44 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(160): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(49): sendMessageByUid(44, Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"inspec...')
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(192): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 09:13:44 pid:1 Worker process terminated
+2020-12-22 09:14:38 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(160): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(49): sendMessageByUid(44, Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"inspec...')
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #35)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(192): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 09:14:38 pid:1 Worker process terminated
+2020-12-22 09:15:21 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(160): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(49): sendMessageByUid(44, Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"inspec...')
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(192): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 09:15:21 pid:1 Worker process terminated
+2020-12-22 09:16:23 pid:1 Exception: You can't send(array) to client, you need to convert it to a string.  in D:\wamp64\www\laravel552\socket\Workerman\Protocols\Websocket.php:236
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(344): Workerman\Protocols\Websocket::encode(Array, Object(Workerman\Connection\TcpConnection))
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(160): Workerman\Connection\TcpConnection->send(Array)
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(49): sendMessageByUid(44, Array)
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), '{"type":"inspec...')
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #32)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(192): Workerman\Worker::runAll()
+#10 {main}
+2020-12-22 09:16:23 pid:1 Worker process terminated
+2021-01-04 02:10:23 pid:1 PDOException: SQLSTATE[HY000] [2002] 由于目标计算机积极拒绝，无法连接。
+ in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1715
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1715): PDO->__construct('mysql:dbname=la...', 'root', '', Array)
+#1 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1702): Workerman\MySQL\Connection->connect()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(178): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'root', '', 'laravel55')
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(26): start_connect_mysql()
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2393): {closure}(Object(Workerman\Worker))
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\laravel552\socket\ws_message_notify.php(228): Workerman\Worker::runAll()
+#9 {main}
+2021-01-04 02:10:24 pid:1 Worker process terminated
+2021-01-06 02:40:36 pid:1 PDOException: SQL:SELECT id,api_token FROM `users` WHERE api_token= soCijtcZcTeNWCvzNxl95iPOKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk AND status = 1 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'soCijtcZcTeNWCvzNxl95iPOKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk' in 'where clause' in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT id,api_t...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(187): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(86): auth_user('soCijtcZcTeNWCv...')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #33)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(235): Workerman\Worker::runAll()
+#10 {main}
+2021-01-06 02:40:36 pid:1 Worker process terminated
+2021-01-06 02:40:47 pid:1 PDOException: SQL:SELECT id,api_token FROM `users` WHERE api_token= soCijtcZcTeNWCvzNxl95iPOKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk AND status = 1 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'soCijtcZcTeNWCvzNxl95iPOKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk' in 'where clause' in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT id,api_t...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(187): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(86): auth_user('soCijtcZcTeNWCv...')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(235): Workerman\Worker::runAll()
+#10 {main}
+2021-01-06 02:40:47 pid:1 Worker process terminated
+2021-01-06 02:42:40 pid:1 PDOException: SQL:SELECT * FROM `users` WHERE api_token= soCijtcZcTeNWCvzNxl95iPOKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk AND status = 1 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'soCijtcZcTeNWCvzNxl95iPOKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk' in 'where clause' in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(187): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(86): auth_user('soCijtcZcTeNWCv...')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(235): Workerman\Worker::runAll()
+#10 {main}
+2021-01-06 02:42:40 pid:1 Worker process terminated
+2021-01-06 02:44:52 pid:1 PDOException: SQL:SELECT * FROM `users` WHERE api_token=soCijtcZcTeNWCvzNxl95iP
+OKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk AND status = 1 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'OKxibZ4EVU0cFJt35U1YdY83IFl7rStWfiqTk AND status = 1' at line 2 in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(188): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(86): auth_user('soCijtcZcTeNWCv...')
+#3 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\laravel552\socket\ws_message_notify.php(236): Workerman\Worker::runAll()
+#10 {main}
+2021-01-06 02:44:52 pid:1 Worker process terminated
+2021-01-06 02:47:43 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_id=  AND is_seen = 0 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND is_seen = 0' at line 1 in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(198): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(203): select_inspection_review_status_message(NULL)
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(90): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\laravel552\socket\ws_message_notify.php(235): Workerman\Worker::runAll()
+#11 {main}
+2021-01-06 02:47:43 pid:1 Worker process terminated
+2021-01-06 02:49:10 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_id=  AND is_seen = 0 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND is_seen = 0' at line 1 in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(201): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(206): select_inspection_review_status_message(NULL)
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(93): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\laravel552\socket\ws_message_notify.php(238): Workerman\Worker::runAll()
+#11 {main}
+2021-01-06 02:49:10 pid:1 Worker process terminated
+2021-01-06 02:49:46 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_id=  AND is_seen = 0 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND is_seen = 0' at line 1 in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(203): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(208): select_inspection_review_status_message(NULL)
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(96): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\laravel552\socket\ws_message_notify.php(240): Workerman\Worker::runAll()
+#11 {main}
+2021-01-06 02:49:46 pid:1 Worker process terminated
+2021-01-06 02:50:13 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_id=  AND is_seen = 0 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND is_seen = 0' at line 1 in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(203): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(208): select_inspection_review_status_message(NULL)
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(96): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\laravel552\socket\ws_message_notify.php(240): Workerman\Worker::runAll()
+#11 {main}
+2021-01-06 02:50:13 pid:1 Worker process terminated
+2021-01-06 02:50:29 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_id=  AND is_seen = 0 SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND is_seen = 0' at line 1 in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\laravel552\socket\ws_message_notify.php(203): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(208): select_inspection_review_status_message(NULL)
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(96): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array)
+#4 D:\wamp64\www\laravel552\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\laravel552\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\laravel552\socket\ws_message_notify.php(240): Workerman\Worker::runAll()
+#11 {main}
+2021-01-06 02:50:29 pid:1 Worker process terminated
+2021-01-14 09:39:15 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'yingyan_test'@'localhost' (using password: YES) in D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1715
+Stack trace:
+#0 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1715): PDO->__construct('mysql:dbname=yi...', 'yingyan_test', 'yingyan_test', Array)
+#1 D:\wamp64\www\laravel552\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1702): Workerman\MySQL\Connection->connect()
+#2 D:\wamp64\www\laravel552\socket\ws_message_notify.php(191): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'yingyan_test', 'yingyan_test', 'yingyan_test')
+#3 D:\wamp64\www\laravel552\socket\ws_message_notify.php(36): start_connect_mysql()
+#4 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(2393): {closure}(Object(Workerman\Worker))
+#5 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\laravel552\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\laravel552\socket\ws_message_notify.php(248): Workerman\Worker::runAll()
+#9 {main}
+2021-01-14 09:39:16 pid:1 Worker process terminated
+2021-10-23 06:31:55 pid:1 PDOException: SQLSTATE[HY000] [1045] Access denied for user 'yingyan'@'localhost' (using password: YES) in D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1715
+Stack trace:
+#0 D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1715): PDO->__construct('mysql:dbname=yi...', 'yingyan', 'yingyan', Array)
+#1 D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1702): Workerman\MySQL\Connection->connect()
+#2 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(191): Workerman\MySQL\Connection->__construct('127.0.0.1', '3306', 'yingyan', 'yingyan', 'yingyan')
+#3 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(36): start_connect_mysql()
+#4 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(2393): {closure}(Object(Workerman\Worker))
+#5 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#6 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#7 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#8 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(248): Workerman\Worker::runAll()
+#9 {main}
+2021-10-23 06:31:56 pid:1 Worker process terminated
+2021-10-23 06:57:52 pid:1 PDOException: SQL:SELECT id,api_token FROM `users` WHERE api_token= 416297931@`qq`.`com` SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@`qq`.`com`' at line 1 in D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1923): Workerman\MySQL\Connection->execute('SELECT id,api_t...', Array)
+#1 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(191): Workerman\MySQL\Connection->row()
+#2 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(84): auth_user('416297931@qq.co...')
+#3 D:\wamp64\www\teach\Laravel\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\teach\Laravel\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#5 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(239): Workerman\Worker::runAll()
+#10 {main}
+2021-10-23 06:57:52 pid:1 Worker process terminated
+2021-10-23 06:59:12 pid:1 PDOException: SQL:SELECT id,api_token FROM `users` WHERE api_token= 416297931@`qq`.`com` SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@`qq`.`com`' at line 1 in D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1923): Workerman\MySQL\Connection->execute('SELECT id,api_t...', Array)
+#1 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(189): Workerman\MySQL\Connection->row()
+#2 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(82): auth_user('416297931@qq.co...')
+#3 D:\wamp64\www\teach\Laravel\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#4 D:\wamp64\www\teach\Laravel\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#5 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#6 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#7 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#8 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#9 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(237): Workerman\Worker::runAll()
+#10 {main}
+2021-10-23 06:59:12 pid:1 Worker process terminated
+2021-10-23 07:06:57 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_id= 7 AND is_seen = 0 SQLSTATE[42S02]: Base table or view not found: 1146 Table 'teach.message_notify' doesn't exist in D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(197): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(202): select_inspection_review_status_message(7)
+#3 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(88): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array)
+#4 D:\wamp64\www\teach\Laravel\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\teach\Laravel\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(234): Workerman\Worker::runAll()
+#11 {main}
+2021-10-23 07:06:57 pid:1 Worker process terminated
+2021-10-24 16:59:19 pid:1 PDOException: SQL:SELECT * FROM `message_notify` WHERE receive_user_type= teacher AND receive_user_id= 17 AND status = 0 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'teacher' in 'where clause' in D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php:1774
+Stack trace:
+#0 D:\wamp64\www\teach\Laravel\socket\Workerman\vendor\workerman\mysql\src\Connection.php(1839): Workerman\MySQL\Connection->execute('SELECT * FROM `...', Array)
+#1 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(202): Workerman\MySQL\Connection->query()
+#2 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(207): select_inspection_review_status_message(17, 'teacher')
+#3 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(88): send_user_inspection_review_status_message(Object(Workerman\Connection\TcpConnection), '\xE8\x8E\xB7\xE5\x8F\x96\xE6\x88\x90\xE5\x8A\x9F', Array, 'teacher')
+#4 D:\wamp64\www\teach\Laravel\socket\Workerman\Connection\TcpConnection.php(660): {closure}(Object(Workerman\Connection\TcpConnection), Array)
+#5 D:\wamp64\www\teach\Laravel\socket\Workerman\Events\Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #29)
+#6 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(2408): Workerman\Events\Select->loop()
+#7 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1404): Workerman\Worker->run()
+#8 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(1347): Workerman\Worker::forkWorkersForWindows()
+#9 D:\wamp64\www\teach\Laravel\socket\Workerman\Worker.php(546): Workerman\Worker::forkWorkers()
+#10 D:\wamp64\www\teach\Laravel\socket\ws_message_notify.php(240): Workerman\Worker::runAll()
+#11 {main}
+2021-10-24 16:59:19 pid:1 Worker process terminated
