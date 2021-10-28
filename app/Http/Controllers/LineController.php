@@ -99,6 +99,7 @@ class LineController extends Controller
             }
             Log::info('tokennnnn:'.$token);
             $_SESSION[$this->accessToken]=$token;
+            $_SESSION['xxx']=111;
             return redirect('/success');
         }catch (\Exception $exception){
             return array(
@@ -123,7 +124,7 @@ class LineController extends Controller
 
     public function getSuccess(){
 
-//        session_start();
+        session_start();
         dd($_SESSION);
         if(empty($_SESSION[$this->accessToken])){
             redirect('/');
