@@ -168,6 +168,7 @@ class LineController extends Controller
         $header=[
             'Content-Type:application/x-www-form-urlencoded'
         ];
+        return 11111;
        return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1,$header);
 
 
@@ -201,7 +202,6 @@ class LineController extends Controller
                 curl_setopt($ch, CURLOPT_URL, $url);
             }
         }
-//        curl_setopt ($ch, CURLOPT_PROXY, 'http://127.0.0.1:7890');
         if($header){
             //设置头文件的信息作为数据流输出
             curl_setopt($ch, CURLOPT_HEADER,0);
