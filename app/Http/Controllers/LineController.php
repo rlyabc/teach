@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
 
 class LineController extends Controller
@@ -98,7 +99,8 @@ class LineController extends Controller
                 throw new \Exception('获取token失败');
             }
             Log::info('tokennnnn:'.$token);
-            $_SESSION[$this->accessToken]=$token;
+//            $_SESSION[$this->accessToken]=$token;
+            Storage::disk('local')->put('accesstoken.txt',$token);
             $_SESSION['xxx']=111;
             return redirect('/success');
         }catch (\Exception $exception){
@@ -125,7 +127,8 @@ class LineController extends Controller
     public function getSuccess(){
 
         session_start();
-        dd($_SESSION);
+        $a=Storage::disk('local')->get('accesstoken.txt');
+        dd($a);
         if(empty($_SESSION[$this->accessToken])){
             redirect('/');
         }
