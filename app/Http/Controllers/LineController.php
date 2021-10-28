@@ -35,7 +35,7 @@ class LineController extends Controller
     protected  $refreshToken='refresh_token';
     protected  $channelId='1656575554';
     protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
-    protected  $callbackUrl='https://guarded-spire-83204.herokuapp.com/auth';
+    protected  $callbackUrl='https://myteachceshi.herokuapp.com/auth';
 
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
@@ -88,7 +88,7 @@ class LineController extends Controller
             }
             unset($_SESSION[$this->lineWebLoginState]);
 
-          return  $curlRes=$this->getAccessToken($code);
+            $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
                 return $curlRes['msg'];
             }
@@ -211,10 +211,11 @@ class LineController extends Controller
         $response = curl_exec($ch);
 
         if (curl_error($ch)) {
-            return array(
+            //echo "cURL Error: " . curl_error($ch);
+            return [
                 'code'=>1001,
-                'msg'=>curl_error($ch)
-            );
+                'msg'=> curl_error($ch)
+            ];
         }
         curl_close($ch);
         return $response;
