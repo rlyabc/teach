@@ -124,6 +124,7 @@ class LineController extends Controller
     public function getSuccess(){
 
         session_start();
+        dd($_SESSION);
         if(empty($_SESSION[$this->accessToken])){
             redirect('/');
         }
