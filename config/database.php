@@ -3,6 +3,7 @@
 use Illuminate\Support\Str;
 
 $db_config = get_db_config();
+dd($db_config);
 
 return [
 
