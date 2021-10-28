@@ -32,7 +32,7 @@ class LineController extends Controller
 
     protected  $nonce = "nonce";
 
-    protected  $authorizationCode='author';
+    protected  $authorizationCode='authorization_code';
     protected  $refreshToken='refresh_token';
     protected  $channelId='1656575554';
     protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
@@ -167,8 +167,9 @@ class LineController extends Controller
             'client_secret'=>$this->channelSecret
         ];
         $client=new Client();
-      return  $client->request('POST',$this->lineBaseUrl,$params);
-//       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1);
+//      return  $client->request('POST',$this->lineBaseUrl,$params);
+        $params=http_build_query($params);
+       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1);
 
 
 
