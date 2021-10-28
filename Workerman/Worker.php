@@ -441,7 +441,7 @@ class Worker
      *
      * @var string
      */
-    protected static $_OS = \OS_TYPE_LINUX;
+    protected static $_OS = 'windows';
 
     /**
      * Processes for windows.
@@ -1341,11 +1341,11 @@ class Worker
      */
     protected static function forkWorkers()
     {
-//        if (static::$_OS === \OS_TYPE_LINUX) {
-//            static::forkWorkersForLinux();
-//        } else {
+        if (static::$_OS === \OS_TYPE_LINUX) {
+            static::forkWorkersForLinux();
+        } else {
             static::forkWorkersForWindows();
-//        }
+        }
     }
 
     /**
@@ -1620,9 +1620,11 @@ class Worker
      */
     protected static function monitorWorkers()
     {
-
+        if (static::$_OS === \OS_TYPE_LINUX) {
+            static::monitorWorkersForLinux();
+        } else {
             static::monitorWorkersForWindows();
-
+        }
     }
 
     /**
@@ -2059,8 +2061,7 @@ class Worker
     public static function checkErrors()
     {
         if (static::STATUS_SHUTDOWN !== static::$_status) {
-//            $error_msg = static::$_OS === \OS_TYPE_LINUX ? 'Worker['. \posix_getpid() .'] process terminated' : 'Worker process terminated';
-            $error_msg ='Worker process terminated';
+            $error_msg = static::$_OS === \OS_TYPE_LINUX ? 'Worker['. \posix_getpid() .'] process terminated' : 'Worker process terminated';
             $errors    = error_get_last();
             if ($errors && ($errors['type'] === \E_ERROR ||
                     $errors['type'] === \E_PARSE ||
@@ -2102,7 +2103,7 @@ class Worker
             static::safeEcho($msg);
         }
         \file_put_contents((string)static::$logFile, \date('Y-m-d H:i:s') . ' ' . 'pid:'
-            .  1 . ' ' . $msg, \FILE_APPEND | \LOCK_EX);
+            . (static::$_OS === \OS_TYPE_LINUX ? \posix_getpid() : 1) . ' ' . $msg, \FILE_APPEND | \LOCK_EX);
     }
 
     /**
@@ -2155,7 +2156,10 @@ class Worker
             // file
             static::$_outputDecorated = false;
         } else {
-            static::$_outputDecorated = false;
+            static::$_outputDecorated =
+                static::$_OS === \OS_TYPE_LINUX &&
+                \function_exists('posix_isatty') &&
+                \posix_isatty($stream);
         }
         return static::$_outputStream = $stream;
     }
@@ -2188,13 +2192,13 @@ class Worker
         }
 
         // Turn reusePort on.
-//        if (static::$_OS === \OS_TYPE_LINUX  // if linux
-//            && \version_compare(\PHP_VERSION,'7.0.0', 'ge') // if php >= 7.0.0
-//            && \strtolower(\php_uname('s')) !== 'darwin' // if not Mac OS
-//            && $this->transport !== 'unix') { // if not unix socket
-//
-//            $this->reusePort = true;
-//        }
+        if (static::$_OS === \OS_TYPE_LINUX  // if linux
+            && \version_compare(\PHP_VERSION,'7.0.0', 'ge') // if php >= 7.0.0
+            && \strtolower(\php_uname('s')) !== 'darwin' // if not Mac OS
+            && $this->transport !== 'unix') { // if not unix socket
+
+            $this->reusePort = true;
+        }
     }
 
 
