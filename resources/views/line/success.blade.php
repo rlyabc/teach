@@ -32,9 +32,10 @@
                 <div class="center-block profile-margin">
                     <img src="{{isset($idToken['picture'])??$idToken['picture']}}" class="profile-img img-circle" />
                     <h3   >{{$idToken['name']}}</h3>
-                    <button type="button" id="verify" class="btn btn-success btn-lg btn-block profile-button">verify</button>
-                    <button type="button" id="refreshToken" class="btn btn-success btn-lg btn-block profile-button">refreshToken</button>
-                    <button type="button" id="revoke" class="btn btn-success btn-lg btn-block profile-button">revoke</button>
+                    {{--<button type="button" id="verify" class="btn btn-success btn-lg btn-block profile-button">verify</button>--}}
+                    {{--<button type="button" id="refreshToken" class="btn btn-success btn-lg btn-block profile-button">refreshToken</button>--}}
+                    {{--<button type="button" id="revoke" class="btn btn-success btn-lg btn-block profile-button">revoke</button>--}}
+                    <a  href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}"  class="btn btn-success btn-lg btn-block profile-button">前往绑定用户</a>
                 </div>
             </div>
         </div>
