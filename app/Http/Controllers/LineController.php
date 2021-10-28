@@ -127,11 +127,13 @@ class LineController extends Controller
         if(empty($token=$_SESSION[$this->accessToken])){
             redirect('/');
         }
+
         if(empty($token=$_SESSION[$this->nonce])){
             redirect('/');
         }
+        dd(111);
         $nonce=$_SESSION[$this->nonce];
-        dd($nonce);
+
 //        $payload = array(
 //            "picture" => "http://example.org",
 //            "name" => "http://example.com",
