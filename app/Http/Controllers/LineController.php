@@ -133,7 +133,6 @@ class LineController extends Controller
             redirect('/');
         }
         $token=json_decode($accesstoken,true);
-        dd($token['id_token']);
 
 
 //        if(empty($_SESSION[$this->accessToken])){
