@@ -161,14 +161,11 @@ class LineController extends Controller
         $params=[
             'grant_type'=>$this->authorizationCode,
             'code'=>$code,
-            'redirect_uri'=>$this->callbackUrl,
+            'redirect_uri'=>urlencode($this->callbackUrl),
             'client_id'=>$this->channelId,
             'client_secret'=>$this->channelSecret
         ];
-        $header=[
-//            'Content-Type:application/x-www-form-urlencoded'
-        ];
-       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1,$header);
+       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1);
 
 
 
