@@ -96,6 +96,7 @@ class LineController extends Controller
             if(!$token){
                 throw new \Exception('获取token失败');
             }
+            dd($token);
 
             Log::info('tokennnnn:'.$token);
             $_SESSION[$this->accessToken]=$token;
