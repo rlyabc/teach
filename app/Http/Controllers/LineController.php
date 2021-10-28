@@ -10,6 +10,7 @@ use App\Student;
 use App\User;
 use Firebase\JWT\JWK;
 use Firebase\JWT\JWT;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -161,11 +162,13 @@ class LineController extends Controller
         $params=[
             'grant_type'=>$this->authorizationCode,
             'code'=>$code,
-            'redirect_uri'=>urlencode($this->callbackUrl),
+            'redirect_uri'=>$this->callbackUrl,
             'client_id'=>$this->channelId,
             'client_secret'=>$this->channelSecret
         ];
-       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1);
+        $client=new Client();
+      return  $client->request('POST',$this->lineBaseUrl,$params);
+//       return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1);
 
 
 
