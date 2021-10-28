@@ -164,11 +164,11 @@ class LineController extends Controller
     }
 
     protected function getTeacherByLineUserId($line_user_id){
-        return User::where('line_user_id',$line_user_id)->find();
+        return User::where('line_user_id',$line_user_id)->first();
     }
 
     protected function getStudentByLineUserId($line_user_id){
-        return Student::where('line_user_id',$line_user_id)->find();
+        return Student::where('line_user_id',$line_user_id)->first();
     }
 
     protected function getAccessToken($code){
