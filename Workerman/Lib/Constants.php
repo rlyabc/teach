@@ -26,7 +26,7 @@ const WORKERMAN_CONNECT_FAIL = 1;
 const WORKERMAN_SEND_FAIL = 2;
 
 // Define OS Type
-const OS_TYPE_LINUX   = 'linux';
+const OS_TYPE_LINUX   = 'windows';
 const OS_TYPE_WINDOWS = 'windows';
 
 // Compatible with php7
