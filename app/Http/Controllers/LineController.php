@@ -124,6 +124,7 @@ class LineController extends Controller
     public function getSuccess(){
 
         session_start();
+        dd(111);
         if(empty($token=$_SESSION[$this->accessToken])){
             redirect('/');
         }
@@ -131,7 +132,7 @@ class LineController extends Controller
         if(empty($token=$_SESSION[$this->nonce])){
             redirect('/');
         }
-        dd(111);
+
         $nonce=$_SESSION[$this->nonce];
 
 //        $payload = array(
