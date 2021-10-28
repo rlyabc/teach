@@ -72,6 +72,9 @@ class LoginController extends Controller
     {
         try {
            $type=$request->input('type');
+            $email=$request->input('email');
+            $lineUserId=$request->input('line_user_id');
+            $name=$request->input('name');
            if($type=='teacher'){
                $request= $this->teacherLogin($request);
            }elseif($type=='student'){
@@ -97,6 +100,19 @@ class LoginController extends Controller
             );
         }
         $data=$request->getBody()->getContents();
+
+        if(($type=='teacher')&&$lineUserId){
+            User::where('email',$email)
+                ->update(array(
+                    'line_user_id'=>$lineUserId
+                ));
+        }elseif(($type=='student')&&$lineUserId){
+             Student::where('name',$name)
+            ->update(array(
+                'line_user_id'=>$lineUserId
+            ));
+        }
+
         return array(
             'code'=>200,
             'data'=>json_decode($data,true),

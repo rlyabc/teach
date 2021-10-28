@@ -36,6 +36,11 @@
                     {{--<button type="button" id="refreshToken" class="btn btn-success btn-lg btn-block profile-button">refreshToken</button>--}}
                     {{--<button type="button" id="revoke" class="btn btn-success btn-lg btn-block profile-button">revoke</button>--}}
                     <a  href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}"  class="btn btn-success btn-lg btn-block profile-button">前往绑定用户</a>
+                    <ul>
+                        @foreach($teacherUser as $user)
+                        <li>{{$user['email']}}</li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

@@ -150,10 +150,26 @@ class LineController extends Controller
         JWT::$leeway = 60; // $leeway in seconds
         $idToken = JWT::decode($token['id_token'], $nonce, array('HS256'));
         $idToken =json_decode(json_encode($idToken),true);
-        return view('line/success',compact('idToken'));
+
+        $line_user_id=$idToken['sub'];
+        $teacherUser=$this->getTeacherByLineUserId($line_user_id);
+        $studentUser=$this->getStudentByLineUserId($line_user_id);
+        $viewRes=[
+            'idToken'=>$idToken,
+            'teacherUser'=>$teacherUser,
+            'studentUser'=>$studentUser
+        ];
+
+        return view('line/success',$viewRes);
     }
 
+    protected function getTeacherByLineUserId($line_user_id){
+        return User::where('line_user_id',$line_user_id)->find();
+    }
 
+    protected function getStudentByLineUserId($line_user_id){
+        return Student::where('line_user_id',$line_user_id)->find();
+    }
 
     protected function getAccessToken($code){
 
