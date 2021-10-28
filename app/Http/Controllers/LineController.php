@@ -127,14 +127,13 @@ class LineController extends Controller
     public function getSuccess(){
 
         session_start();
-        dd($_SESSION);
         $accesstoken=Storage::disk('local')->get('accesstoken.txt');
 
         if(empty($accesstoken)){
             redirect('/');
         }
         $token=json_decode($accesstoken,true);
-
+        dd($token['id_token']);
 
 
 //        if(empty($_SESSION[$this->accessToken])){
