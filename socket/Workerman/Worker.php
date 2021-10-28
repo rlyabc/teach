@@ -1099,6 +1099,7 @@ class Worker
      */
     protected static function installSignal()
     {
+        return;
         if (static::$_OS !== \OS_TYPE_LINUX) {
             return;
         }
