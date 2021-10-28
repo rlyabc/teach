@@ -32,7 +32,7 @@ class LineController extends Controller
 
     protected  $nonce = "nonce";
 
-    protected  $authorizationCode='authorization_code';
+    protected  $authorizationCode='author';
     protected  $refreshToken='refresh_token';
     protected  $channelId='1656575554';
     protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
