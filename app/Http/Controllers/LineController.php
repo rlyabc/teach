@@ -128,37 +128,27 @@ class LineController extends Controller
 
         session_start();
         $accesstoken=Storage::disk('local')->get('accesstoken.txt');
-        $accesstoken=json_decode($accesstoken,true);
-        dd($accesstoken);
-        if(empty($_SESSION[$this->accessToken])){
-            redirect('/');
-        }
 
-        if(empty($_SESSION[$this->nonce])){
+        if(empty($accesstoken)){
             redirect('/');
         }
-        $token=$_SESSION[$this->accessToken];
-        dd($token);
+        $token=json_decode($accesstoken,true);
+
+
+
+//        if(empty($_SESSION[$this->accessToken])){
+//            redirect('/');
+//        }
+//
+//        if(empty($_SESSION[$this->nonce])){
+//            redirect('/');
+//        }
         $nonce=$_SESSION[$this->nonce];
 
-//        $payload = array(
-//            "picture" => "http://example.org",
-//            "name" => "http://example.com",
-//        );
-//        $token['id_token'] = JWT::encode($payload, $nonce);
 
         unset($_SESSION[$this->nonce]);
 
-//        $token['id_token']='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY2Vzcy5saW5lLm1lIiwic3ViIjoiVTVhNWZlNjU1MTk5MTNiN2YwMWUyOTQ5N2Y2MTRhN2JjIiwiYXVkIjoiMTY1NjU3NTU1NCIsImV4cCI6MTYzNTM0ODE4MiwiaWF0IjoxNjM1MzQ0NTgyLCJub25jZSI6InNzcyIsImFtciI6WyJsaW5lc3NvIl0sIm5hbWUiOiLku7vlh4zkupEifQ.COilDPNpIijtlZ4r3ozxy46nhr3EfNIBk0OSgk3OE0E';
-
-
         JWT::$leeway = 60; // $leeway in seconds
-//        $key=[
-//            'iss'=>'https://access.line.me',
-//            'sub'=>$this->channelSecret,
-//            'aud'=>$this->channelId,
-//            'nonce'=>$nonce
-//        ];
         $idToken = JWT::decode($token['id_token'], $nonce, array('HS256'));
         $idToken =json_decode(json_encode($idToken),true);
         return view('line/success',compact('idToken'));
