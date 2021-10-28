@@ -88,7 +88,7 @@ class LineController extends Controller
             }
             unset($_SESSION[$this->lineWebLoginState]);
 
-            $curlRes=$this->getAccessToken($code);
+          return  $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
                 return $curlRes['msg'];
             }
@@ -168,7 +168,6 @@ class LineController extends Controller
         $header=[
             'Content-Type:application/x-www-form-urlencoded'
         ];
-        return 11111;
        return $curlRes=$this->curl($this->lineBaseUrl,$params,1,1,$header);
 
 
