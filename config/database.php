@@ -1,9 +1,6 @@
 <?php
 $url = parse_url(getenv("DATABASE_URL"));
 echo json_encode($url);
-
-$conn = new mysqli($server, $username, $password, $db);
-echo $conn;
 return [
 
     /*
@@ -59,9 +56,9 @@ return [
 //        ],
         'mysql' => [
             'driver' => 'mysql',
-            'host' => $url["host"],
+            'host' => "us-cdbr-east.cleardb.com",
             'port' =>3306,
-            'database' =>substr($url["path"], 1),
+            'database' =>"heroku_db",
             'username' =>$url["user"],
             'password' => $url["pass"],
             'unix_socket' => env('DB_SOCKET', ''),
