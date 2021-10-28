@@ -54,10 +54,6 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
-        ],
-        "pre-install-cmd":[
-            "bower install",
-            "composer clear-cache"
         ]
     },
     "config": {
