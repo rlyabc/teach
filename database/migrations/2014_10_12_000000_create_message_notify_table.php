@@ -13,17 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('message_notify', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('api_token');
-            $table->string('role');
-            $table->tinyInteger('email_verify')->default(0);
-            $table->integer('school_id');
-            $table->string('line_user_id');
-            $table->rememberToken();
+            $table->integer('send_user_id');
+            $table->integer('receive_user_id');
+            $table->tinyInteger('status')->default(0);
+            $table->text('content');
+            $table->text('path');
+            $table->integer('pid');
+            $table->string('receive_user_type');
+            $table->string('send_user_type');
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('schools');
     }
 }
