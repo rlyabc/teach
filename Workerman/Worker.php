@@ -1099,7 +1099,6 @@ class Worker
      */
     protected static function installSignal()
     {
-        return;
         if (static::$_OS !== \OS_TYPE_LINUX) {
             return;
         }
@@ -1342,11 +1341,11 @@ class Worker
      */
     protected static function forkWorkers()
     {
-//        if (static::$_OS === \OS_TYPE_LINUX) {
-//            static::forkWorkersForLinux();
-//        } else {
+        if (static::$_OS === \OS_TYPE_LINUX) {
+            static::forkWorkersForLinux();
+        } else {
             static::forkWorkersForWindows();
-//        }
+        }
     }
 
     /**
