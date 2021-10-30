@@ -191,8 +191,8 @@ function auth_user($uid,$type){
 //        }
 //
 //    }
-//    $url='https://myteachceshi.herokuapp.com/getUserInfoById';
-    $url='http://www.myteach.com/getUserInfoById';
+    $url='https://myteachceshi.herokuapp.com/getUserInfoById';
+//    $url='http://www.myteach.com/getUserInfoById';
     $params=[
         'uid'=>$uid,
         'type'=>$type
