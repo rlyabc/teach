@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('password');
-            $table->integer('school_id');
-            $table->string('line_user_id');
+            $table->integer('school_id')->nullable($value = true);
+            $table->string('line_user_id')->nullable($value = true);
             $table->rememberToken();
             $table->timestamps();
         });
