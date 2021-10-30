@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::routes();
+//        Passport::routes();
         //
 
         //默认令牌发放的有效期是永久
