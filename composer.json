@@ -58,8 +58,7 @@
             "@php artisan package:discover"
         ],
         "post-install-cmd": [
-            "chmod -R 777 storage",
-            "php artisan passport:keys"
+            "chmod -R 777 storage"
         ]
     },
     "config": {
