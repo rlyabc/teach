@@ -488,6 +488,7 @@ class ComposerStaticInit4ac8f6bb3c31a9fac4059b1f3deb02f8
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LineController' => __DIR__ . '/../..' . '/app/Http/Controllers/LineController.php',
         'App\\Http\\Controllers\\MessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/MessageController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AuthenticateApi' => __DIR__ . '/../..' . '/app/Http/Middleware/AuthenticateApi.php',
         'App\\Http\\Middleware\\EnableCrossRequestMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/EnableCrossRequestMiddleware.php',

@@ -221,4 +221,11 @@ class MessageController extends Controller
     }
 
 
+    public function getMessageNotifyByReceiveId(Request $request){
+        $type=$request->input('type');
+        $id=$request->input('id');
+        return MessageNotify::where('receive_user_type',$type)->where('receive_user_id',$id)->where('status',0)->get();
+    }
+
+
 }

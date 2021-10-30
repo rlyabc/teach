@@ -22,7 +22,7 @@ $worker->count = 1;
 $worker->onWorkerStart = function($worker)
 
 {
-    start_connect_mysql();
+    //start_connect_mysql();
     // 开启一个内部端口，方便内部系统推送数据，Text协议格式 文本+换行符
     $inner_text_worker = new Worker('text://0.0.0.0:5678');
 
@@ -182,16 +182,23 @@ function start_connect_mysql(){
 //判断用户是否存在
 function auth_user($uid,$type){
     // 将db实例存储在全局变量中(也可以存储在某类的静态成员中)
-    global $db;
-    if($uid){
-//        return $db->select('id,api_token')->from('users')->where("api_token= '".$api_token."' AND status = 1")->row();
-        if($type=='teacher'){
-            return $db->select('id,api_token')->from('users')->where("id= '".$uid."'")->row();
-        }else{
-            return $db->select('id,api_token')->from('students')->where("id= '".$uid."'")->row();
-        }
-
-    }
+//    global $db;
+//    if($uid){
+//        if($type=='teacher'){
+//            return $db->select('id,api_token')->from('users')->where("id= '".$uid."'")->row();
+//        }else{
+//            return $db->select('id,api_token')->from('students')->where("id= '".$uid."'")->row();
+//        }
+//
+//    }
+    $url='https://myteachceshi.herokuapp.com/getUserInfoById';
+    $params=[
+        'uid'=>$uid,
+        'type'=>$type
+    ];
+    $res=curl($url, $params, 0, 1);
+    echo 1111;
+    echo $res;
     return;
 
 }
@@ -199,9 +206,19 @@ function auth_user($uid,$type){
 
 //查询验货审核状态消息
 function select_inspection_review_status_message($id,$type){
-    // 将db实例存储在全局变量中(也可以存储在某类的静态成员中)
-    global $db;
-    return $db->select('*')->from('message_notify')->where("receive_user_type='" .$type ."' AND  receive_user_id= {$id} AND status = 0")->query();
+//    global $db;
+//    return $db->select('*')->from('message_notify')->where("receive_user_type='" .$type ."' AND  receive_user_id= {$id} AND status = 0")->query();
+//
+    $url='https://myteachceshi.herokuapp.com/getMessageNotifyByReceiveId';
+    $params=[
+        'id'=>$id,
+        'type'=>$type
+    ];
+    $res=curl($url, $params, 0, 1);
+
+    echo 222;
+    echo $res;
+    return $res;
 }
 
 //发送给用户消息
@@ -232,6 +249,53 @@ function send_user_message_error($connection,$message='uid错误'){
     $errmsg=array('status'=>0,'message'=>$message);
     $errmsg=json_encode($errmsg);
     $connection->send($errmsg);
+}
+
+//curl请求
+function curl($url, $params = false, $ispost = 0, $https = 0,$header=[])
+{
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36');
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 300);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    if ($https) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); // 对认证证书来源的检查
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); // 从证书中检查SSL加密算法是否存在
+    }
+    if ($ispost) {
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        curl_setopt($ch, CURLOPT_URL, $url);
+    } else {
+        if ($params) {
+            if (is_array($params)) {
+                $params = http_build_query($params);
+            }
+            curl_setopt($ch, CURLOPT_URL, $url . '?' . $params);
+        } else {
+            curl_setopt($ch, CURLOPT_URL, $url);
+        }
+    }
+    if($header){
+        //设置头文件的信息作为数据流输出
+        curl_setopt($ch, CURLOPT_HEADER,0);
+        //设置请求头
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$header);
+
+    }
+    $response = curl_exec($ch);
+
+    if (curl_error($ch)) {
+        //echo "cURL Error: " . curl_error($ch);
+        return [
+            'code'=>1001,
+            'msg'=> curl_error($ch)
+        ];
+    }
+    curl_close($ch);
+    return $response;
 }
 
 

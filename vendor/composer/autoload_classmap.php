@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\LineController' => $baseDir . '/app/Http/Controllers/LineController.php',
     'App\\Http\\Controllers\\MessageController' => $baseDir . '/app/Http/Controllers/MessageController.php',
+    'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\AuthenticateApi' => $baseDir . '/app/Http/Middleware/AuthenticateApi.php',
     'App\\Http\\Middleware\\EnableCrossRequestMiddleware' => $baseDir . '/app/Http/Middleware/EnableCrossRequestMiddleware.php',

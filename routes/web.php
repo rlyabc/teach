@@ -30,6 +30,10 @@ Route::get('/loginCancel', 'LineController@getLoginCancel')->name('login_cancel'
 Route::get('/login', 'LineController@getLogin')->name('login');
 Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage');
 
+
+Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserInfoById');
+Route::get('/getMessageNotifyByReceiveId', 'MessageNotifyController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
+
 //Route::namespace('Auth')->prefix('auth/line')->group(function () {
 //    Route::get('/', 'SocialitesLineController@line');
 //    Route::get('callback', 'SocialitesLineController@callback');
