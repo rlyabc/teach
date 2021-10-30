@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Mail\mailVerify;
+use App\Mail\MailVerify;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -62,7 +62,7 @@ class Email implements ShouldQueue
         if($cc_email){
             $mailsObj=$mailsObj->cc($cc_email);
         }
-        $mailsObj->send(new mailVerify($formData));
+        $mailsObj->send(new MailVerify($formData));
 
     }
 }
