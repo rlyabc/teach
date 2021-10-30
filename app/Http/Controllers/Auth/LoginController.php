@@ -70,7 +70,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        try {
+//        try {
            $type=$request->input('type');
             $email=$request->input('email');
             $lineUserId=$request->input('line_user_id');
@@ -86,17 +86,17 @@ class LoginController extends Controller
                );
            }
 
-        } catch (\Exception $e) {
-            return array(
-                'code'=>1001,
-                'msg' =>'账号验证失败'
-            );
-        }
+//        } catch (\Exception $e) {
+//            return array(
+//                'code'=>1001,
+//                'msg' =>'账号验证失败1'
+//            );
+//        }
 
         if ($request->getStatusCode() == 401) {
             return array(
                 'code'=>1001,
-                'msg' =>'账号验证失败'
+                'msg' =>'账号验证失败2'
             );
         }
         $data=$request->getBody()->getContents();
