@@ -143,9 +143,9 @@ class Select implements EventInterface
                 $this->_scheduler->insert($timer_id, -$run_time);
                 $this->_eventTimer[$timer_id] = array($func, (array)$args, $flag, $fd);
                 $select_timeout = ($run_time - \microtime(true)) * 1000000;
-                if( $this->_selectTimeout > $select_timeout ){ 
-                    $this->_selectTimeout = $select_timeout;   
-                }  
+                if( $this->_selectTimeout > $select_timeout ){
+                    $this->_selectTimeout = $select_timeout;
+                }
                 return $timer_id;
         }
 
@@ -256,10 +256,10 @@ class Select implements EventInterface
     public function loop()
     {
         while (1) {
-            if(\DIRECTORY_SEPARATOR === '/') {
-                // Calls signal handlers for pending signals
-                \pcntl_signal_dispatch();
-            }
+//            if(\DIRECTORY_SEPARATOR === '/') {
+//                // Calls signal handlers for pending signals
+//                \pcntl_signal_dispatch();
+//            }
 
             $read  = $this->_readFds;
             $write = $this->_writeFds;
