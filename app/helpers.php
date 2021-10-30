@@ -3,7 +3,7 @@
 function get_db_config()
 {
     if (getenv('IS_IN_HEROKU')) {
-        $url = parse_url(getenv("DATABASE_URL"));
+        $url = parse_url(getenv("HEROKU_POSTGRESQL_BLACK_URL"));
 
         return $db_config = [
             'connection' => 'pgsql',
