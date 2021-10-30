@@ -1,1 +1,1 @@
-web: vendor/bin/heroku-php-apache2 public/  $DOC_ROOT
+web: vendor/bin/heroku-php-apache2 public/  $PORT
