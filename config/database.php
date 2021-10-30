@@ -4,8 +4,6 @@ use Illuminate\Support\Str;
 
 $db_config = get_db_config();
 
-echo  json_encode($db_config);
-
 return [
 
     'default' => $db_config['connection'],
