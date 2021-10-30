@@ -6,7 +6,7 @@ require_once './Workerman/Autoloader.php';
 require_once './Workerman/vendor/autoload.php';
 
 // 初始化一个worker容器，监听2000端口
-$worker = new Worker('websocket://0.0.0.0:433');//
+$worker = new Worker('websocket://0.0.0.0:3000');//
 /*
  * 注意这里进程数必须设置为1，否则会报端口占用错误
 
