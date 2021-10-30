@@ -6,7 +6,7 @@ require_once './Workerman/Autoloader.php';
 require_once './Workerman/vendor/autoload.php';
 print_r($argv);
 // 初始化一个worker容器，监听2000端口
-$worker = new Worker('websocket://myteachceshi.herokuapp.com:'.$argv[1]);//
+$worker = new Worker('websocket://0.0.0.0:'.$argv[1]);//
 /*
  * 注意这里进程数必须设置为1，否则会报端口占用错误
 
