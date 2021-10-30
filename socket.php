@@ -148,5 +148,5 @@
    }
  }
 print_r($argv);
-$sock = new SocketService('172.17.199.26',$argv[1]);
+$sock = new SocketService('0.0.0.0',$argv[1]);
 $sock->run();
