@@ -38,12 +38,12 @@ return [
     'api' => [
         'appid' => env('CLIENT_ID'),
         'secret' => env('CLIENT_SECRET'),
-        'callback' => 'http://www.myteach.com/auth/callback'
+        'callback' => 'https://myteachceshi.herokuapp.com/auth/callback'
     ],
     'student_api' => [
-        'appid' => env('CLIENT_ID2'),
-        'secret' => env('CLIENT_SECRET2'),
-        'callback' => 'http://www.myteach.com/auth/callback'
+        'appid' => env('CLIENT_ID'),
+        'secret' => env('CLIENT_SECRET'),
+        'callback' => 'https://myteachceshi.herokuapp.com/auth/callback'
     ],
     'Line' => [
         'client_id' => env('Line_KEY'),
