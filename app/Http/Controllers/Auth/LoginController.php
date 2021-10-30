@@ -122,7 +122,7 @@ class LoginController extends Controller
 
     protected function teacherLogin($request){
         $client = new Client();
-        $request = $client->request('POST',  'https://myteachceshi.herokuapp.com/oauth/token', [
+        $request = $client->request('POST', request()->root() . '/oauth/token', [
             'form_params' =>[
                 'grant_type' => 'password',
                 'client_id' => config('services.api.appid'),
