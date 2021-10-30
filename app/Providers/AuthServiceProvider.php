@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         //Passport::refreshTokensExpireIn(Carbon::now()->addDays(4));
         Passport::routes(function (RouteRegistrar $router) {
             //对于密码授权的方式只要这几个路由就可以了
-            config(['auth.guards.api.provider' => 'users']);
+//            config(['auth.guards.api.provider' => 'users']);
             $router->forAccessTokens();
         });
     }
