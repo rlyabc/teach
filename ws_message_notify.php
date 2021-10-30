@@ -73,21 +73,21 @@ $worker->onMessage = function($connection, $data)
 
     global $worker;
     $data=json_decode($data,true);
+    echo json_encode($data['11221']);
+    echo json_encode($data['uid']);
     // 判断当前客户端是否已经验证,既是否设置了uid
     if(!empty($data['uid']))
 
     {
-        $authRes=auth_user($data['uid'],$data['type']);
-        echo json_encode($data['type']);
 
-        echo json_encode($authRes);
-        if($authRes){
-            $uid=$authRes['id'].$data['type'];
-//            $connection->uid=$authRes['id'];
-//            $worker->uidConnections[$authRes['id']] = $connection;
+//        $authRes=auth_user($data['uid'],$data['type']);
+//        echo json_encode($data['uid']);
+        if($data['uid']){
+//            $uid=$authRes['id'].$data['type'];
+            $uid=$data['uid'].$data['type'];
             $connection->uid=$uid;
             $worker->uidConnections[$uid] = $connection;
-            send_user_inspection_review_status_message($connection,'获取成功',$authRes,$data['type']);
+            send_user_inspection_review_status_message($connection,'获取成功',$data['uid'],$data['type']);
 
             return;
         }
@@ -191,12 +191,13 @@ function auth_user($uid,$type){
 //        }
 //
 //    }
-    $url='https://myteachceshi.herokuapp.com/getUserInfoById';
+//    $url='https://myteachceshi.herokuapp.com/getUserInfoById';
+    $url='http://www.myteach.com/getUserInfoById';
     $params=[
         'uid'=>$uid,
         'type'=>$type
     ];
-    $res=curl($url, $params, 0, 1);
+   return $res=curl($url, $params, 0, 1);
     echo 1111;
     echo $res;
     return;
@@ -210,6 +211,8 @@ function select_inspection_review_status_message($id,$type){
 //    return $db->select('*')->from('message_notify')->where("receive_user_type='" .$type ."' AND  receive_user_id= {$id} AND status = 0")->query();
 //
     $url='https://myteachceshi.herokuapp.com/getMessageNotifyByReceiveId';
+
+//    $url='http://www.myteach.com/getMessageNotifyByReceiveId';
     $params=[
         'id'=>$id,
         'type'=>$type
@@ -222,8 +225,8 @@ function select_inspection_review_status_message($id,$type){
 }
 
 //发送给用户消息
-function send_user_inspection_review_status_message($connection,$message,$authRes,$type,$is_broadcast=0){
-    $review_messages=select_inspection_review_status_message($authRes['id'],$type);
+function send_user_inspection_review_status_message($connection,$message,$uid,$type,$is_broadcast=0){
+    $review_messages=select_inspection_review_status_message($uid,$type);
 //    $count=0;
 //    $review_message_contents=array();
 //    foreach ($review_messages as $review_message) {
@@ -231,7 +234,7 @@ function send_user_inspection_review_status_message($connection,$message,$authRe
 //        $review_message_contents[]=json_decode($review_message['contents'],true);
 //    }
     $count=count($review_messages);
-    $return_data=array( 'type'=>'','show_num'=>$count,'api_token'=>$authRes['api_token'],
+    $return_data=array( 'type'=>'','show_num'=>$count,
         'data'=>'');
     send_user_message_success($connection,$message,$return_data);
 }
