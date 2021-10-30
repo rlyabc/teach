@@ -58,7 +58,7 @@ class AccessTokenController
      */
     public function issueToken(ServerRequestInterface $request)
     {
-        return 11111;
+        return 111112;
         return $this->withErrorHandling(function () use ($request) {
             return $this->convertResponse(
                 $this->server->respondToAccessTokenRequest($request, new Psr7Response)
