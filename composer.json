@@ -59,9 +59,9 @@
         ],
         "post-install-cmd": [
             "chmod -R 777 storage",
-            "chmod -R 777 resources",
             "php artisan passport:keys",
-             "php artisan config:cache"
+             "php artisan config:cache",
+             "php artisan view:clear"
         ]
     },
     "config": {
