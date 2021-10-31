@@ -46,9 +46,9 @@ return [
         'callback' => 'https://myteachceshi.herokuapp.com/auth/callback'
     ],
     'line_api' => [
-        'client_id' => env('CLIENT_ID2'),
-        'client_secret' => env('CLIENT_SECRET2'),
-        'redirect' => 'https://myteachceshi.herokuapp.com/auth/callback',
+        'appid' => env('CLIENT_ID2'),
+        'appid' => env('CLIENT_SECRET2'),
+        'callback' => 'https://myteachceshi.herokuapp.com/auth/callback',
     ],
     'Line' => [
         'client_id' => env('Line_KEY'),
