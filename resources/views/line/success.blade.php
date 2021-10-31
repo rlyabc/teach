@@ -36,11 +36,18 @@
                     {{--<button type="button" id="refreshToken" class="btn btn-success btn-lg btn-block profile-button">refreshToken</button>--}}
                     {{--<button type="button" id="revoke" class="btn btn-success btn-lg btn-block profile-button">revoke</button>--}}
                     <a  href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}"  class="btn btn-success btn-lg btn-block profile-button">前往绑定用户</a>
+                    <div>已经绑定的老师：</div>
                     <ul>
                         @if(!empty($teacherUser))
-                        @foreach($teacherUser as $user)
-                        <li>{{$user['email']}}</li>
-                        @endforeach
+                        <li>{{$teacherUser['name']}}</li>
+                        @endif
+                    </ul>
+                    <div>已经绑定的学生：</div>
+                    <ul>
+                        @if(!empty($studentUser))
+                            @foreach($studentUser as $user)
+                                <li>{{$user['name']}}</li>
+                            @endforeach
                         @endif
                     </ul>
                 </div>

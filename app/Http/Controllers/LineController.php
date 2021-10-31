@@ -168,7 +168,7 @@ class LineController extends Controller
     }
 
     protected function getStudentByLineUserId($line_user_id){
-        return Student::where('line_user_id',$line_user_id)->first();
+        return Student::where('line_user_id',$line_user_id)->get();
     }
 
     protected function getAccessToken($code){
