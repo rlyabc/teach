@@ -17,6 +17,8 @@ class CreateMessageNotifyTable extends Migration
             $table->increments('id');
             $table->integer('send_user_id');
             $table->integer('receive_user_id');
+            $table->string('send_student_id');
+            $table->integer('receive_student_id');
             $table->tinyInteger('status')->default(0);
             $table->text('content');
             $table->text('path');

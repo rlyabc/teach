@@ -44,14 +44,14 @@
                     <div>已经绑定的老师：</div>
                     <ul>
                         @if(!empty($teacherUser))
-                        <li>{{$teacherUser['name']}} <a href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}&user_type=teacher">使用该用户</a> </li>
+                        <li>{{$teacherUser['name']}} <a href="http://myteachceshi.herokuapp.com/index.html#/lineLogin?line_user_id={{$idToken['sub']}}&user_type=teacher">使用该用户</a> </li>
                         @endif
                     </ul>
                     <div>已经绑定的学生：</div>
                     <ul>
                         @if(!empty($studentUser))
                             @foreach($studentUser as $user)
-                                <li>{{$user['name']}} <a href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}&user_type=student">使用该用户</a></li>
+                                <li>{{$user['name']}} <a href="http://myteachceshi.herokuapp.com/index.html#/lineLogin?line_user_id={{$idToken['sub']}}&user_type=student">使用该用户</a></li>
                             @endforeach
                         @endif
                     </ul>
