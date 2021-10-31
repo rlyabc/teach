@@ -32,7 +32,7 @@ Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage')
 
 
 Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserInfoById');
-Route::get('/getMessageNotifyByReceiveId', 'MessageNotifyController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
+Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
 //Route::namespace('Auth')->prefix('auth/line')->group(function () {
 //    Route::get('/', 'SocialitesLineController@line');

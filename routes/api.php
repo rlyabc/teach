@@ -24,11 +24,20 @@ Route::group(['middleware' => ['auth:api']], function(){
 
     Route::get('/getStudentsByUserId', 'EmailController@getStudentsByUserId');
     Route::get('/getTeachersByUserId', 'EmailController@getTeachersByUserId');
+    Route::get('/getTeacherAdminsByStudentId', 'EmailController@getTeacherAdminsByStudentId');
+    Route::get('/getTeachersDataByStudentId', 'EmailController@getTeachersDataByStudentId');
+
 
     Route::post('/getMessageData', 'MessageController@getMessageData');
     Route::post('/updateMessageStatus', 'MessageController@updateMessageStatus');
     Route::post('/addMessage', 'MessageController@addMessage');
     Route::post('/replyMessage', 'MessageController@replyMessage');
+
+
+    Route::get('/getFollowDataByUseId', 'EmailController@getFollowDataByUseId');
+    Route::get('/getFollowDataByStudentId', 'EmailController@getFollowDataByStudentId');
+    Route::post('/follow', 'EmailController@follow');
+
 
 
 });

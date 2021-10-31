@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class School extends Model
+class Follow extends Model
 {
     use Notifiable;
 
@@ -15,7 +15,7 @@ class School extends Model
      * @var array
      */
     protected $fillable = [
-        'name','user_id'
+        'student_id','user_id'
     ];
 
     /**
@@ -26,10 +26,17 @@ class School extends Model
     protected $hidden = [
     ];
 
-    public function student()
+
+
+    public function user()
     {
-        return $this->hasMany('App\Student', 'school_id', 'id');
+        return $this->belongsTo('App\User');
     }
 
+
+    public function student()
+    {
+        return $this->belongsTo('App\Student');
+    }
 
 }

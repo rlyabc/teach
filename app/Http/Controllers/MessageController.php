@@ -31,17 +31,29 @@ class MessageController extends Controller
             $type=$request->input('type');
             $res=MessageNotify::with('send_user')
                 ->with('receive_user')
+                ->with('send_student_user')
+                ->with('receive_student_user')
                 ->where('pid',0)
                ->where(function ($query)use($user_id,$type){
-                   $query->where(function ($query)use($user_id,$type){
-                       $query
-                           ->where('receive_user_type',$type)
-                           ->where('receive_user_id',$user_id);
-                   })->Orwhere(function ($query)use($user_id,$type){
-                       $query->where('send_user_id',$user_id)
-                           ->where('send_user_type',$type)
-                       ;
-                   });
+                   if($type=='student'){
+                       $query->where(function ($query)use($user_id,$type){
+                           $query->where('send_student_id',$user_id)
+                           ;
+                       })->Orwhere(function ($query)use($user_id,$type){
+                           $query->where('receive_student_id',$user_id)
+                           ;
+                       });
+                   }else{
+                       $query->where(function ($query)use($user_id,$type){
+                           $query->where('send_user_id',$user_id)
+//                               ->where('send_user_type',$type)
+                           ;
+                       })->Orwhere(function ($query)use($user_id,$type){
+                           $query->where('receive_user_id',$user_id)
+                           ;
+                       });
+                   }
+
                })
                 ->paginate(10)
                 ->toArray();
@@ -51,6 +63,8 @@ class MessageController extends Controller
                 $path='-'.$id.'-';
                 $treeData=MessageNotify::with('send_user')
                     ->with('receive_user')
+                    ->with('send_student_user')
+                    ->with('receive_student_user')
                     ->where(function ($query) use($id,$path){
                         $query->where('id',$id)
                             ->Orwhere('path','like','%'.$path.'%');
@@ -87,11 +101,8 @@ class MessageController extends Controller
                 ->update(array(
                     'status'=>1
                 ));
-            $messageNum=MessageNotify::where('receive_user_id',$user_id)
-                ->where('receive_user_type',$type)
-                ->where('status',0)
-                ->count();
-            $this->socket($user_id,$messageNum);
+             $this->updateMessageNumByReceiveUserId($type,$user_id);
+
             return array(
                 'code'=>200,
                 'message'=>'操作成功'
@@ -115,22 +126,29 @@ class MessageController extends Controller
             $send_type=$request->input('send_type');
             $receive_type=$request->input('receive_type');
             $send_user_id=$user_id=Auth::id();
-            MessageNotify::create(array(
-                    'status'=>0,
-                    'send_user_id'=>$send_user_id,
-                    'send_user_type'=>$send_type,
-                    'receive_user_id'=>$receive_user_id,
-                    'receive_user_type'=>$receive_type,
-                    'content'=>$content,
-                    'pid'=>0
-                ));
+            $params=[
+                'status'=>0,
+                'send_user_type'=>$send_type,
+                'receive_user_type'=>$receive_type,
+                'content'=>$content,
+                'pid'=>0
+            ];
+            if($send_type=='teacher'){
+                $params['send_user_id']=$send_user_id;
+            }
+            if($receive_type=='teacher'){
+                $params['receive_user_id']=$receive_user_id;
+            }
+            if($send_type=='student'){
+                $params['send_student_id']=$send_user_id;
+            }
+            if($receive_type=='student'){
+                $params['receive_student_id']=$receive_user_id;
+            }
+            MessageNotify::create($params);
 
-            $messageNum=MessageNotify::where('receive_user_id',$receive_user_id)
-                ->where('receive_user_type',$receive_type)
-                ->where('status',0)
-                ->count();
+            $this->updateMessageNumByReceiveUserId($receive_type,$receive_user_id);
 
-            $this->socket($receive_user_id,$messageNum);
             return array(
                 'code'=>200,
                 'message'=>'操作成功'
@@ -141,6 +159,42 @@ class MessageController extends Controller
                 'msg'=>$exception->getMessage()
             );
         }
+    }
+
+//    public function updateMessageNumBySendUserId($send_type,$send_user_id){
+//        $messageNum=0;
+//        if($send_type=='teacher'){
+//            $messageNum=MessageNotify::where('receive_user_id',$send_user_id)
+//                ->where('send_user_type',$send_type)
+//                ->where('status',0)
+//                ->count();
+//        }
+//        if($send_type=='student'){
+//            $messageNum=MessageNotify::where('receive_student_id',$send_user_id)
+//                ->where('receive_user_type',$send_type)
+//                ->where('status',0)
+//                ->count();
+//        }
+//        $this->socket($send_user_id,$messageNum);
+//        return ;
+//    }
+
+    public function updateMessageNumByReceiveUserId($receive_type,$receive_user_id){
+        $messageNum=0;
+        if($receive_type=='teacher'){
+            $messageNum=MessageNotify::where('receive_user_id',$receive_user_id)
+                ->where('receive_user_type',$receive_type)
+                ->where('status',0)
+                ->count();
+        }
+        if($receive_type=='student'){
+            $messageNum=MessageNotify::where('receive_student_id',$receive_user_id)
+                ->where('receive_user_type',$receive_type)
+                ->where('status',0)
+                ->count();
+        }
+        $this->socket($receive_user_id,$messageNum,$receive_type);
+        return ;
     }
 
     public function replyMessage(Request $request){
@@ -152,22 +206,33 @@ class MessageController extends Controller
             $user_type=$request->input('user_type');
             $send_user_id=Auth::id();
 
-            MessageNotify::create(array(
+
+            $params=array(
                 'status'=>0,
-                'send_user_id'=>$send_user_id,
                 'send_user_type'=>$user_type,
-                'receive_user_id'=>$receive_user_id,
                 'receive_user_type'=>$receive_user_type,
                 'content'=>$content,
                 'pid'=>$rowData['id'],
                 'path'=>$rowData['path'].'-'.$rowData['id'].'-',
+            );
+            if($user_type=='teacher'){
+                $params['send_user_id']=$send_user_id;
+            }
+            if($receive_user_type=='teacher'){
+                $params['receive_user_id']=$receive_user_id;
+            }
+            if($user_type=='student'){
+                $params['send_student_id']=$send_user_id;
+            }
+            if($receive_user_type=='student'){
+                $params['receive_student_id']=$receive_user_id;
+            }
+            MessageNotify::where('id',$rowData['id'])->update(array(
+               'status'=>1
             ));
-            $messageNum=MessageNotify::where('receive_user_id',$receive_user_id)
-                ->where('receive_user_type',$receive_user_type)
-                ->where('status',0)
-                ->count();
-
-            $this->socket($receive_user_id,$messageNum);
+            MessageNotify::create($params);
+            $this->updateMessageNumByReceiveUserId($receive_user_type,$receive_user_id);
+            $this->updateMessageNumByReceiveUserId($user_type,$send_user_id);
             return array(
                 'code'=>200,
                 'message'=>'操作成功'
@@ -182,20 +247,9 @@ class MessageController extends Controller
 
 
 
-    public function socket($user_id,$messageNotifyCount){
+    public function socket($user_id,$messageNotifyCount,$type='teacher'){
         // 建立socket连接到内部推送端口
         try{
-            $type='message';
-            //$user_id=Auth::id();
-
-//            $messageNotifyRes=MessageNotify::where(function ($query)use($user_id){
-//                $query->where('receive_user_id',$user_id)
-//                    ->Orwhere('send_user_id',$user_id);
-//            })
-//                ->where('status',0)
-//                ->get();
-//            $messageNotifyCount=count($messageNotifyRes);
-
             $client = stream_socket_client('tcp://127.0.0.1:5678', $errno, $errmsg, 1);
 
             // 推送的数据，包含uid字段，表示是给这个uid推送
@@ -224,7 +278,10 @@ class MessageController extends Controller
     public function getMessageNotifyByReceiveId(Request $request){
         $type=$request->input('type');
         $id=$request->input('id');
-        return MessageNotify::where('receive_user_type',$type)->where('receive_user_id',$id)->where('status',0)->get();
+        if($type=='teacher'){
+            return MessageNotify::where('receive_user_type',$type)->where('receive_user_id',$id)->where('status',0)->get();
+        }
+        return MessageNotify::where('receive_user_type',$type)->where('receive_student_id',$id)->where('status',0)->get();
     }
 
 

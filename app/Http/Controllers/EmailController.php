@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Follow;
 use App\Jobs\Email;
 use App\MessageNotify;
 use App\School;
@@ -185,16 +186,38 @@ class EmailController extends Controller
         }
     }
 
-    public function getStudentData(){
+    public function getStudentData(Request $request){
         try{
             $user_id=Auth::id();
-            $schoolRes=School::where('user_id',$user_id)->get();
+            $user_type=$request->input('user_type');
             $schoolIds=[];
-            if(count($schoolRes)){
-                $schoolArr=$schoolRes->toArray();
-                $schoolIds=array_column($schoolArr,'id');
+            if($user_type=='teacher_admin'){
+                $schoolRes=School::where('user_id',$user_id)->get();
+                $schoolIds=[];
+                if(count($schoolRes)){
+                    $schoolArr=$schoolRes->toArray();
+                    $schoolIds=array_column($schoolArr,'id');
+                }
+                $res=Student::with('school')
+                    ->with(['follow'=>function($query)use($user_id){
+                        $query->where('user_id',$user_id);
+                    }])
+                    ->whereIn('school_id',$schoolIds)
+                    ->paginate(10);
+            }else{
+                $userInfo=User::where('id',$user_id)->first();
+                if($userInfo){
+                    $schoolIds[]=$userInfo["school_id"];
+                }
+                $res=Student::with('school')
+                    ->whereHas('follow',function ($query)use($user_id){
+                        $query->where('user_id',$user_id);
+                    })
+                    ->whereIn('school_id',$schoolIds)
+                    ->paginate(10);
+
             }
-            $res=Student::whereIn('school_id',$schoolIds)->paginate(10);
+
             return array(
                 'code'=>200,
                 'data'=>$res
@@ -267,8 +290,102 @@ class EmailController extends Controller
             );
         }
     }
+    //获得学生所在学校的老师管理员
+    public function getTeacherAdminsByStudentId(){
+        try{
+            $id=Auth::id();
+            $schoolRes=School::whereHas('student',function ($query)use($id){
+                $query->where('id',$id);
+            })->first();
+            $res=User::where('id',$schoolRes['user_id'])->get();
+            return array(
+                'code'=>200,
+                'message'=>'操作成功',
+                'data'=>$res
+            );
+        }catch (\Exception $exception){
+            return array(
+                'code'=>1001,
+                'msg'=>$exception->getMessage()
+            );
+        }
+    }
+
+    //获得学生所在学校的所有老师
+    public function getTeachersDataByStudentId(){
+        try{
+            $id=Auth::id();
+            $schoolRes=School::whereHas('student',function ($query)use($id){
+                $query->where('id',$id);
+            })->first();
+            $res=User::where(function ($query)use($schoolRes){
+                    $query->where('school_id',$schoolRes['id'])
+                            ->Orwhere('id',$schoolRes['user_id']);
+                    })
+                ->with(['follow'=>function($query)use($id){
+                    $query->where('student_id',$id);
+                }])
+                ->paginate(10);
+            return array(
+                'code'=>200,
+                'message'=>'操作成功',
+                'data'=>$res
+            );
+        }catch (\Exception $exception){
+            return array(
+                'code'=>1001,
+                'msg'=>$exception->getMessage()
+            );
+        }
+    }
+
+    public function getFollowDataByUseId(){
+        $user_id=Auth::id();
+        $data=Follow::with('student')
+            ->where('user_id',$user_id)
+            ->paginate(10);
+
+        return array(
+            'code'=>200,
+            'data'=>$data
+        );
+    }
+
+    public function getFollowDataByStudentId(){
+        $user_id=Auth::id();
+        $data=Follow::with('user')
+            ->where('user_id',$user_id)
+            ->paginate(10);
+        return array(
+            'code'=>200,
+            'data'=>$data
+        );
+
+    }
+
+    public function follow(Request $request){
+        $follow_user_id=$request->input('user_id');
+        $status=$request->input('status');
+        $user_id=Auth::id();
+        $student = Student::where('id',$user_id)->find(1);
+        if($status){
+            $student->follow()->attach($follow_user_id);
+            return array(
+                'code'=>200,
+                'msg'=>'关注成功'
+            );
+        }else{
+            $student->follow()->detach($follow_user_id);
+            return array(
+                'code'=>200,
+                'msg'=>'取关成功'
+            );
+        }
 
 
+
+
+    }
 
 
 

@@ -30,6 +30,16 @@ class MessageNotify extends Model
 
     function receive_user()
     {
-        return $this->belongsTo('App\User', 'send_user_id', 'id');
+        return $this->belongsTo('App\User', 'receive_user_id', 'id');
+    }
+
+    function send_student_user()
+    {
+        return $this->belongsTo('App\Student', 'send_student_id', 'id');
+    }
+
+    function receive_student_user()
+    {
+        return $this->belongsTo('App\Student', 'receive_student_id', 'id');
     }
 }

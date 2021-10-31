@@ -41,3 +41,8 @@ Stack trace:
 #8 D:\wamp64\www\teach\Laravel\ws_message_notify.php(242): Workerman\Worker::runAll()
 #9 {main}
 2021-10-28 03:08:06 pid:1 Worker process terminated
+2021-10-31 08:36:26 pid:1 Worker process terminated
+2021-10-31 08:37:12 pid:1 Worker process terminated
+2021-10-31 08:38:42 pid:1 Worker process terminated
+2021-10-31 08:39:14 pid:1 Worker process terminated
+2021-10-31 08:40:48 pid:1 Worker process terminated

@@ -4,37 +4,15 @@ use Workerman\Worker;
 
 require_once './Workerman/Autoloader.php';
 require_once './Workerman/vendor/autoload.php';
-print_r($argv);
-// 初始化一个worker容器，监听2000端口
 
-$context = array(
-    'ssl' => array(
-        // 请使用绝对路径
-        'local_cert' => '*.pem', // 也可以是crt文件
-        'local_pk' => '*.key',
-        'verify_peer' => false,
-        // 'allow_self_signed' => true, //如果是自签名证书需要开启此选项
-    ),
-);
+$worker = new Worker('websocket://0.0.0.0:9000');//
 
-$worker = new Worker('websocket://0.0.0.0:'.$argv[1],$context);//
-
-$worker->transport = 'ssl';
-/*
- * 注意这里进程数必须设置为1，否则会报端口占用错误
-
- * (php 7可以设置进程数大于1，前提是$inner_text_worker->reusePort=true)
-
- */
 
 $worker->count = 1;
-
-// worker进程启动后创建一个text Worker以便打开一个内部通讯端口
 
 $worker->onWorkerStart = function($worker)
 
 {
-    //start_connect_mysql();
     // 开启一个内部端口，方便内部系统推送数据，Text协议格式 文本+换行符
     $inner_text_worker = new Worker('text://0.0.0.0:5678');
 
@@ -53,9 +31,7 @@ $worker->onWorkerStart = function($worker)
             if(empty($buffer_arr['uid'])){
                 $ret=false;
             }else{
-
-                $uid = $buffer_arr['uid'];
-                //$authRes=auth_user($uid);
+                $uid=getConnectUid($buffer_arr['uid'],$buffer_arr['type']);
                 $sendRes=array('status'=>1,'message'=>'获取成功','data'=>$buffer_arr);
 
                 $ret = sendMessageByUid($uid, json_encode($sendRes));
@@ -85,18 +61,12 @@ $worker->onMessage = function($connection, $data)
 
     global $worker;
     $data=json_decode($data,true);
-    echo json_encode($data['11221']);
-    echo json_encode($data['uid']);
     // 判断当前客户端是否已经验证,既是否设置了uid
     if(!empty($data['uid']))
 
     {
-
-//        $authRes=auth_user($data['uid'],$data['type']);
-//        echo json_encode($data['uid']);
         if($data['uid']){
-//            $uid=$authRes['id'].$data['type'];
-            $uid=$data['uid'].$data['type'];
+            $uid=getConnectUid($data['uid'],$data['type']);
             $connection->uid=$uid;
             $worker->uidConnections[$uid] = $connection;
             send_user_inspection_review_status_message($connection,'获取成功',$data['uid'],$data['type']);
@@ -182,69 +152,29 @@ function sendMessageByUid($uid, $message)
 
 }
 
-//连接数据库
-function start_connect_mysql(){
-    // 将db实例存储在全局变量中(也可以存储在某类的静态成员中)
-    global $db;
-//    $db = new \Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', '', 'laravel55');
-    $db = new \Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', '', 'teach');
+function  getConnectUid($uid,$type){
+    return $uid.$type;
 }
 
-
-//判断用户是否存在
-function auth_user($uid,$type){
-    // 将db实例存储在全局变量中(也可以存储在某类的静态成员中)
-//    global $db;
-//    if($uid){
-//        if($type=='teacher'){
-//            return $db->select('id,api_token')->from('users')->where("id= '".$uid."'")->row();
-//        }else{
-//            return $db->select('id,api_token')->from('students')->where("id= '".$uid."'")->row();
-//        }
-//
-//    }
-    $url='https://myteachceshi.herokuapp.com/getUserInfoById';
-//    $url='http://www.myteach.com/getUserInfoById';
-    $params=[
-        'uid'=>$uid,
-        'type'=>$type
-    ];
-   return $res=curl($url, $params, 0, 1);
-    echo 1111;
-    echo $res;
-    return;
-
-}
 
 
 //查询验货审核状态消息
 function select_inspection_review_status_message($id,$type){
-//    global $db;
-//    return $db->select('*')->from('message_notify')->where("receive_user_type='" .$type ."' AND  receive_user_id= {$id} AND status = 0")->query();
-//
-    $url='https://myteachceshi.herokuapp.com/getMessageNotifyByReceiveId';
-
-//    $url='http://www.myteach.com/getMessageNotifyByReceiveId';
+//    $url='https://myteachceshi.herokuapp.com/getMessageNotifyByReceiveId';
+    $url='http://www.myteach.com/getMessageNotifyByReceiveId';
     $params=[
         'id'=>$id,
         'type'=>$type
     ];
-    $res=curl($url, $params, 0, 1);
+    $res=curl($url, $params, 0, 0);
 
-    echo 222;
-    echo $res;
-    return $res;
+    return json_decode($res,true);
 }
 
 //发送给用户消息
 function send_user_inspection_review_status_message($connection,$message,$uid,$type,$is_broadcast=0){
     $review_messages=select_inspection_review_status_message($uid,$type);
-//    $count=0;
-//    $review_message_contents=array();
-//    foreach ($review_messages as $review_message) {
-//        $count++;
-//        $review_message_contents[]=json_decode($review_message['contents'],true);
-//    }
+
     $count=count($review_messages);
     $return_data=array( 'type'=>'','show_num'=>$count,
         'data'=>'');
