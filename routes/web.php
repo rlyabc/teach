@@ -39,3 +39,4 @@ Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyBy
 //    Route::get('/', 'SocialitesLineController@line');
 //    Route::get('callback', 'SocialitesLineController@callback');
 //});
+Route::get('auth/callback', 'SocialitesLineController@callback');
