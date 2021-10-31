@@ -30,7 +30,7 @@ class EmailController extends Controller
         User::where('id',$user_id)->update(array(
             'email_verify'=>1
         ));
-        return redirect('http://localhost:8080/#/emailVerify');
+        return redirect('https://myteachceshi.herokuapp.com/#/emailVerify');
     }
 
     public function login(Request $request){
@@ -82,7 +82,7 @@ class EmailController extends Controller
 //            $user->roles()->attach($roleId);
 
             $user_id=$res->id;
-            dispatch(new Email($email,'http://www.myteach.com/emailVerify?user_id='.$user_id,array('sfsfsf')));
+            dispatch(new Email($email,'https://myteachceshi.herokuapp.com/emailVerify?user_id='.$user_id,array('sfsfsf')));
             DB::commit();
             return array(
                 'code'=>200,

@@ -49,6 +49,10 @@ return [
             'driver' => 'passport',
             'provider' => 'students',
         ],
+        'line_api' => [
+            'driver' => 'authorization_code',
+            'provider' => 'users',
+        ],
     ],
 
     /*

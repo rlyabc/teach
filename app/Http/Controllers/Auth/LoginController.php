@@ -139,12 +139,11 @@ class LoginController extends Controller
         $client = new Client();
         $request = $client->request('POST', request()->root() . '/oauth/token', [
             'form_params' =>[
-                'grant_type' => 'password',
-                'client_id' => config('services.api.appid'),
-                'client_secret' => config('services.api.secret'),
+                'grant_type' => 'authorization_code',
+                'client_id' => config('services.line_api.appid'),
+                'client_secret' => config('services.line_api.secret'),
                 'line_user_id' => $request->input('line_user_id'),
-                'scope' => '*',
-                'guard' => 'api'
+                'scope' => '*'
             ]
         ]);
         return $request;
