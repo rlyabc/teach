@@ -99,8 +99,8 @@ class LineController extends Controller
                 throw new \Exception('获取token失败');
             }
             Log::info('tokennnnn:'.$token);
-//            $_SESSION[$this->accessToken]=$token;
-            Storage::disk('local')->put('accesstoken.txt',$token);
+            $_SESSION[$this->accessToken]=$token;
+//            Storage::disk('local')->put('accesstoken.txt',$token);
             $_SESSION['xxx']=111;
             return redirect('/success');
         }catch (\Exception $exception){
@@ -127,17 +127,18 @@ class LineController extends Controller
     public function getSuccess(){
 
         session_start();
-        $accesstoken=Storage::disk('local')->get('accesstoken.txt');
-
+//        $accesstoken=Storage::disk('local')->get('accesstoken.txt');
+        $accesstoken=$_SESSION[$this->accessToken];
         if(empty($accesstoken)){
             redirect('/');
         }
         $token=json_decode($accesstoken,true);
 
 
-//        if(empty($_SESSION[$this->accessToken])){
-//            redirect('/');
-//        }
+        if(empty($_SESSION[$this->accessToken])){
+            redirect('/');
+        }
+
 //
 //        if(empty($_SESSION[$this->nonce])){
 //            redirect('/');
@@ -145,7 +146,7 @@ class LineController extends Controller
         $nonce=$_SESSION[$this->nonce];
 
 
-        unset($_SESSION[$this->nonce]);
+        //unset($_SESSION[$this->nonce]);
 
         JWT::$leeway = 60; // $leeway in seconds
         $idToken = JWT::decode($token['id_token'], $nonce, array('HS256'));
