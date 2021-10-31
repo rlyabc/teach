@@ -6,7 +6,20 @@ require_once './Workerman/Autoloader.php';
 require_once './Workerman/vendor/autoload.php';
 print_r($argv);
 // 初始化一个worker容器，监听2000端口
-$worker = new Worker('websocket://0.0.0.0:'.$argv[1]);//
+
+$context = array(
+    'ssl' => array(
+        // 请使用绝对路径
+        'local_cert' => '*.pem', // 也可以是crt文件
+        'local_pk' => '*.key',
+        'verify_peer' => false,
+        // 'allow_self_signed' => true, //如果是自签名证书需要开启此选项
+    ),
+);
+
+$worker = new Worker('websocket://0.0.0.0:'.$argv[1],$context);//
+
+$worker->transport = 'ssl';
 /*
  * 注意这里进程数必须设置为1，否则会报端口占用错误
 
