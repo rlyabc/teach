@@ -141,8 +141,8 @@ class LoginController extends Controller
             'form_params' =>[
                 'grant_type' => 'authorization_code',
                 'client_id' => config('services.line_api.appid'),
-                'client_secret' => config('services.line_api.secret'),
-                'code' => $request->input('line_user_id'),
+//                'client_secret' => config('services.line_api.secret'),
+//                'line_user_id' => $request->input('line_user_id'),
 //                'scope' => '*'
             ]
         ]);
