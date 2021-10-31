@@ -1,2 +1,1 @@
-
-startserver: php ws_message_notify.php  $PORT
+web: vendor/bin/heroku-php-apache2 public/
