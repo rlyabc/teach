@@ -51,7 +51,7 @@ return [
         ],
         'line_api' => [
             'driver' => 'authorization_code',
-            'provider' => 'users',
+            'provider' => 'lines',
         ],
     ],
 
@@ -80,6 +80,10 @@ return [
         'students' => [
             'driver' => 'eloquent',
             'model' => App\Student::class,
+        ],
+        'lines' => [
+            'driver' => 'eloquent',
+            'model' => App\Line::class,
         ],
 
         // 'users' => [
