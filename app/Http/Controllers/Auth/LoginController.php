@@ -143,7 +143,7 @@ class LoginController extends Controller
                 'client_id' => config('services.line_api.appid'),
                 'client_secret' => config('services.line_api.secret'),
                 'line_user_id' => $request->input('line_user_id'),
-                'scope' => '*'
+//                'scope' => '*'
             ]
         ]);
         return $request;
