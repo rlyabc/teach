@@ -59,7 +59,13 @@ class LoginController extends Controller
            }elseif($type=='student'){
                 $request= $this->studentLogin($request);
             }elseif($type=='line'){
-               $request= $this->lineLogin($request);
+               $user = User::where('line_user_id',$lineUserId)->first();
+               $token= $user->createToken('teach')->accessToken;
+               return array(
+                   'code'=>200,
+                   'data'=>array('access_token'=>$token),
+                   'msg' =>'登录成功'
+               );
            }else{
                return array(
                    'code'=>1001,
@@ -135,21 +141,6 @@ class LoginController extends Controller
         return $request;
     }
 
-    protected function lineLogin($request){
-        $client = new Client();
-        $request = $client->request('POST', request()->root() . '/oauth/token', [
-            'form_params' =>[
-                'grant_type' => 'authorization_code',
-                'client_id' => config('services.line_api.appid'),
-                'client_secret' => config('services.line_api.secret'),
-                'redirect_uri' => config('services.line_api.callback'),
-                'line_user_id' => $request->input('line_user_id'),
-                'scope' => '*',
-                'guard' => 'line_api'
-            ]
-        ]);
-        return $request;
-    }
 
     /**
      * 退出登录

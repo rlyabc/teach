@@ -34,6 +34,12 @@ class User extends Authenticatable
         return $this->where('email', $login)->where('email_verify', 1)->first();
     }
 
+
+//    public function findAccessToken($login)
+//    {
+//        return $this->where('email', $login)->where('email_verify', 1)->first();
+//    }
+
 //    function school_teacher()
 //    {
 //        return $this->belongsToMany('App\School', 'school_teacher', 'user_id','school_id');
