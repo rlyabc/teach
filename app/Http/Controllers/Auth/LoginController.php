@@ -45,32 +45,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-//    public function login(Request $request)
-//    {
-//        $request->validate([
-//            'email' => 'required|string',
-//            'password' => 'required|string',
-//        ]);
-//
-//        $http = new Client();
-//        // 发送相关字段到后端应用获取授权令牌
-//        $response = $http->post('http://www.myteach.com/oauth/token', [
-//            'form_params' => [
-//                'grant_type' => 'password',
-//                'client_id' => config('services.blog.appid'),
-//                'client_secret' => config('services.blog.secret'),
-//                'username' => $request->input('email'),
-//                'password' => $request->input('password'),
-//                'scope' => '*',
-//            ],
-//        ]);
-//        return response($response->getBody());
-//    }
 
 
     public function login(Request $request)
     {
-//        try {
+        try {
            $type=$request->input('type');
             $email=$request->input('email');
             $lineUserId=$request->input('line_user_id');
@@ -79,19 +58,21 @@ class LoginController extends Controller
                $request= $this->teacherLogin($request);
            }elseif($type=='student'){
                 $request= $this->studentLogin($request);
-            }else{
+            }elseif($type=='line'){
+               $request= $this->lineLogin($request);
+           }else{
                return array(
                    'code'=>1001,
                    'msg' =>'参数错误'
                );
            }
 
-//        } catch (\Exception $e) {
-//            return array(
-//                'code'=>1001,
-//                'msg' =>'账号验证失败1'
-//            );
-//        }
+        } catch (\Exception $e) {
+            return array(
+                'code'=>1001,
+                'msg' =>'账号验证失败1'
+            );
+        }
 
         if ($request->getStatusCode() == 401) {
             return array(
@@ -149,6 +130,21 @@ class LoginController extends Controller
                 'password' => $request->input('password'),
                 'scope' => '*',
                 'guard' => 'student_api'
+            ]
+        ]);
+        return $request;
+    }
+
+    protected function lineLogin($request){
+        $client = new Client();
+        $request = $client->request('POST', request()->root() . '/oauth/token', [
+            'form_params' =>[
+                'grant_type' => 'password',
+                'client_id' => config('services.api.appid'),
+                'client_secret' => config('services.api.secret'),
+                'line_user_id' => $request->input('line_user_id'),
+                'scope' => '*',
+                'guard' => 'api'
             ]
         ]);
         return $request;

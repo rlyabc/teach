@@ -24,6 +24,11 @@
     <script src="{{ URL::asset('js/success.js')}}"></script>
     <title>LINE Web Login Success</title>
 </head>
+<style>
+    ul{
+        list-style: none;
+    }
+</style>
 <body>
 <div class="container">
     <div class="row">
@@ -39,14 +44,14 @@
                     <div>已经绑定的老师：</div>
                     <ul>
                         @if(!empty($teacherUser))
-                        <li>{{$teacherUser['name']}}</li>
+                        <li>{{$teacherUser['name']}} <a href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}&user_type=teacher">使用该用户</a> </li>
                         @endif
                     </ul>
                     <div>已经绑定的学生：</div>
                     <ul>
                         @if(!empty($studentUser))
                             @foreach($studentUser as $user)
-                                <li>{{$user['name']}}</li>
+                                <li>{{$user['name']}} <a href="http://myteachceshi.herokuapp.com/index.html#/login?line_user_id={{$idToken['sub']}}&user_type=student">使用该用户</a></li>
                             @endforeach
                         @endif
                     </ul>

@@ -101,8 +101,8 @@ class LineController extends Controller
             Log::info('tokennnnn:'.$token);
             $_SESSION[$this->accessToken]=$token;
 //            Storage::disk('local')->put('accesstoken.txt',$token);
-            $_SESSION['xxx']=111;
-            return redirect('/success');
+//            $_SESSION['xxx']=111;
+            return redirect('/line');
         }catch (\Exception $exception){
             return array(
                 'code'=>1001,

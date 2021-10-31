@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    View::addExtension('html','php');
+    return view()->file(public_path().'/index.html');
 });
 
 
@@ -24,7 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/auth', 'LineController@auth')->name('auth');
-Route::get('/success', 'LineController@getSuccess')->name('success');
+Route::get('/line', 'LineController@getSuccess')->name('success');
 Route::get('/sessionError', 'LineController@getSessionError')->name('session_error');
 Route::get('/loginCancel', 'LineController@getLoginCancel')->name('login_cancel');
 Route::get('/login', 'LineController@getLogin')->name('login');
