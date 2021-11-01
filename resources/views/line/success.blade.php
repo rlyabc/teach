@@ -51,7 +51,7 @@
                     <ul>
                         @if(!empty($studentUser))
                             @foreach($studentUser as $user)
-                                <li>{{$user['name']}} <a href="https://myteachceshi.herokuapp.com/index.html#/lineLogin?line_user_id={{$idToken['sub']}}&user_type=student">使用该用户</a></li>
+                                <li>{{$user['name']}} <a href="https://myteachceshi.herokuapp.com/index.html#/lineLogin?line_user_id={{$idToken['sub']}}&student_id={{$user['id']}}&user_type=student">使用该用户</a></li>
                             @endforeach
                         @endif
                     </ul>

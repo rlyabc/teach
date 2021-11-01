@@ -57,8 +57,18 @@ class LoginController extends Controller
            }elseif($type=='student'){
                 $request= $this->studentLogin($request);
             }elseif($type=='line'){
-               $user = User::where('line_user_id',$lineUserId)->first();
-               $token= $user->createToken('teach')->accessToken;
+               $user_type=$request->input('user_type');
+               if($user_type=='teacher'){
+                   $user = User::where('line_user_id',$lineUserId)->first();
+                   $token= $user->createToken('teach')->accessToken;
+               }else{
+                   $student_id=$request->input('student_id');
+                   $user = Student::where('line_user_id',$lineUserId)
+                       ->where('id',$student_id)
+                       ->first();
+                   $token= $user->createToken('student')->accessToken;
+               }
+
                return array(
                    'code'=>200,
                    'data'=>array('access_token'=>$token),
