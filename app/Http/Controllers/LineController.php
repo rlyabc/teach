@@ -129,7 +129,7 @@ class LineController extends Controller
         session_start();
 //        $accesstoken=Storage::disk('local')->get('accesstoken.txt');
 
-        if(isset($_SESSION[$this->accessToken]) || empty($_SESSION[$this->accessToken])){
+        if(!isset($_SESSION[$this->accessToken]) || empty($_SESSION[$this->accessToken])){
             redirect('/gotoauthpage');
         }
         $accesstoken=$_SESSION[$this->accessToken];
