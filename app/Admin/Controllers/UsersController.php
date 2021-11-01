@@ -82,7 +82,11 @@ class UsersController extends Controller
 
         $grid->school_id('所属学校')->display(function ($value) {
             $res=School::where('id',$value)->first();
-            return $res['name'];
+            if(!empty($res['name'])){
+                return $res['name'];
+            }
+            return '';
+
         });;
         $grid->line_user_id('Line user id');
 

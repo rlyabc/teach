@@ -87,7 +87,10 @@ class SchoolsController extends Controller
         $grid->name('校名');
         $grid->user_id('校长')->display(function ($value) {
             $res=User::where('id',$value)->first();
-            return $res['name'];
+            if(!empty($res['name'])){
+                return $res['name'];
+            }
+            return '';
         });
         $grid->is_admin_agree('是否管理员同意')->display(function ($value) {
             return $value ? '是' : '否';
