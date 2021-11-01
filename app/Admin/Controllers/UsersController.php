@@ -102,7 +102,7 @@ class UsersController extends Controller
             $actions->disableDelete();
 
             // 不在每一行后面展示编辑按钮
-//            $actions->disableEdit();
+            $actions->disableEdit();
         });
 
         $grid->tools(function ($tools) {
@@ -130,13 +130,13 @@ class UsersController extends Controller
      *
      * @return Form
      */
-    protected function form()
-    {
-        $form = new Form(new User);
-        $form->switch('is_admin_agree', '是否经过管理员同意');
-
-        return $form;
-    }
+//    protected function form()
+//    {
+//        $form = new Form(new User);
+//        $form->switch('is_admin_agree', '是否经过管理员同意');
+//
+//        return $form;
+//    }
 
 
 }
