@@ -137,7 +137,7 @@ class LineController extends Controller
 
 
         if(empty($_SESSION[$this->accessToken])){
-            redirect('/');
+            return redirect('/');
         }
 
 //
