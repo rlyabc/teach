@@ -150,7 +150,7 @@ class TeachController extends Controller
     public function getSchoolData(Request $request){
         try{
             $user=$request->user();
-            $res=School::where('user_id',$user['id'])->agree()->paginate(10);
+            $res=School::where('user_id',$user['id'])->paginate(10);
             return array(
                 'code'=>200,
                 'data'=>$res
