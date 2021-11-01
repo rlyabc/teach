@@ -21,9 +21,6 @@ Route::get('/emailVerify', 'EmailController@emailVerify');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('/auth', 'LineController@auth')->name('auth');
 Route::get('/line', 'LineController@getSuccess')->name('success');
 Route::get('/sessionError', 'LineController@getSessionError')->name('session_error');
@@ -35,4 +32,3 @@ Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage')
 Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserInfoById');
 Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
-Route::get('auth/callback', 'SocialitesLineController@callback');

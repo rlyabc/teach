@@ -2,12 +2,14 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class School extends Model
 {
     use Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +31,10 @@ class School extends Model
     public function student()
     {
         return $this->hasMany('App\Student', 'school_id', 'id');
+    }
+
+    public function scopeAgree(Builder $query){
+        return $query->where('is_admin_agree', 1);
     }
 
 

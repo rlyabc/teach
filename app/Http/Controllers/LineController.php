@@ -137,20 +137,15 @@ class LineController extends Controller
         if(empty($_SESSION[$this->accessToken])){
             return redirect('/');
         }
-
 //
 //        if(empty($_SESSION[$this->nonce])){
 //            redirect('/');
 //        }
         $nonce=$_SESSION[$this->nonce];
-
-
         //unset($_SESSION[$this->nonce]);
-
         JWT::$leeway = 60; // $leeway in seconds
         $idToken = JWT::decode($token['id_token'], $nonce, array('HS256'));
         $idToken =json_decode(json_encode($idToken),true);
-
         $line_user_id=$idToken['sub'];
         $teacherUser=$this->getTeacherByLineUserId($line_user_id);
         $studentUser=$this->getStudentByLineUserId($line_user_id);

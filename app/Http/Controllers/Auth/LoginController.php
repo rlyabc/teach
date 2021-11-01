@@ -51,9 +51,7 @@ class LoginController extends Controller
     {
 //        try {
            $type=$request->input('type');
-            $email=$request->input('email');
             $lineUserId=$request->input('line_user_id');
-            $name=$request->input('name');
            if($type=='teacher'){
                $request= $this->teacherLogin($request);
            }elseif($type=='student'){

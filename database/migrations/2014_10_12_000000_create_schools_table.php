@@ -17,6 +17,7 @@ class CreateSchoolsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('user_id');
+            $table->tinyInteger('is_admin_agree')->default(0);
             $table->timestamps();
         });
     }
