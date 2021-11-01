@@ -61,6 +61,7 @@
         "post-install-cmd": [
             "chmod -R 777 storage",
             "php artisan passport:keys",
+            "php artisan vendor:publish --provider=\"Encore\\Admin\\AdminServiceProvider\"",
             "php artisan admin:install"
         ]
     },
