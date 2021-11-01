@@ -13,19 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => ['auth:api']], function(){
-    Route::post('/addTeacher', 'EmailController@addTeacher');
-    Route::post('/addSchool', 'EmailController@addSchool');
-    Route::post('/addStudent', 'EmailController@addStudent');
-    Route::get('/getSchoolsByUserId', 'EmailController@getSchoolsByUserId');
+    Route::post('/addTeacher', 'TeachController@addTeacher');
+    Route::post('/addSchool', 'TeachController@addSchool');
+    Route::post('/addStudent', 'TeachController@addStudent');
+    Route::get('/getSchoolsByUserId', 'TeachController@getSchoolsByUserId');
 
-    Route::post('/getTeacherData', 'EmailController@getTeacherData');
-    Route::post('/getSchoolData', 'EmailController@getSchoolData');
-    Route::post('/getStudentData', 'EmailController@getStudentData');
+    Route::post('/getTeacherData', 'TeachController@getTeacherData');
+    Route::post('/getSchoolData', 'TeachController@getSchoolData');
+    Route::post('/getStudentData', 'TeachController@getStudentData');
 
-    Route::get('/getStudentsByUserId', 'EmailController@getStudentsByUserId');
-    Route::get('/getTeachersByUserId', 'EmailController@getTeachersByUserId');
-    Route::get('/getTeacherAdminsByStudentId', 'EmailController@getTeacherAdminsByStudentId');
-    Route::get('/getTeachersDataByStudentId', 'EmailController@getTeachersDataByStudentId');
+    Route::get('/getStudentsByUserId', 'TeachController@getStudentsByUserId');
+    Route::get('/getTeachersByUserId', 'TeachController@getTeachersByUserId');
+    Route::get('/getTeacherAdminsByStudentId', 'TeachController@getTeacherAdminsByStudentId');
+    Route::get('/getTeachersDataByStudentId', 'TeachController@getTeachersDataByStudentId');
 
 
     Route::post('/getMessageData', 'MessageController@getMessageData');
@@ -34,9 +34,9 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('/replyMessage', 'MessageController@replyMessage');
 
 
-    Route::get('/getFollowDataByUseId', 'EmailController@getFollowDataByUseId');
-    Route::get('/getFollowDataByStudentId', 'EmailController@getFollowDataByStudentId');
-    Route::post('/follow', 'EmailController@follow');
+    Route::get('/getFollowDataByUseId', 'TeachController@getFollowDataByUseId');
+    Route::get('/getFollowDataByStudentId', 'TeachController@getFollowDataByStudentId');
+    Route::post('/follow', 'TeachController@follow');
 
 
 
