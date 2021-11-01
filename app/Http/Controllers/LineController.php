@@ -127,8 +127,6 @@ class LineController extends Controller
     public function getSuccess(){
 
         session_start();
-//        $accesstoken=Storage::disk('local')->get('accesstoken.txt');
-
         if(empty($_SESSION[$this->accessToken])){
             return redirect('/gotoauthpage');
         }
@@ -190,6 +188,72 @@ class LineController extends Controller
 
 
     }
+
+    public function lineBind(Request $request){
+        $lineUserId=$request->input('line_user_id');
+        $password=$request->input('password');
+        $type=$request->input('type');
+        if($type=='teacher'){
+            $email=$request->input('email');
+            if($lineUserId&&$email){
+                $exists=User::where('line_user_id',$lineUserId)->first();
+                if($exists){
+                    return  array(
+                        'code'=>1001,
+                        'msg'=>'教师只能绑定一个'
+                    );
+                }
+
+                $user=User::where('email',$email)->where('email_verify',1)->first();
+                if($user&&Hash::check($password,$user->password)){
+                    if($user['line_user_id']==$lineUserId){
+                        return  array(
+                            'code'=>1001,
+                            'msg'=>'你已经绑定过了'
+                        );
+                    }
+                    User::where('email',$email)
+                        ->update(array(
+                            'line_user_id'=>$lineUserId
+                        ));
+                    return  array(
+                        'code'=>200,
+                        'msg'=>'绑定成功'
+                    );
+                }
+            }
+
+        }
+
+        if($type=='student'){
+            $name=$request->input('name');
+            if($lineUserId&&$name){
+                $user=Student::where('name',$name)->first();
+                if($user&&Hash::check($password,$user->password)){
+                    if($user['line_user_id']==$lineUserId){
+                        return  array(
+                            'code'=>1001,
+                            'msg'=>'你已经绑定过了'
+                        );
+                    }
+                    Student::where('name',$name)
+                        ->update(array(
+                            'line_user_id'=>$lineUserId
+                        ));
+                    return  array(
+                        'code'=>200,
+                        'msg'=>'绑定成功'
+                    );
+                }
+            }
+        }
+        return  array(
+            'code'=>1001,
+            'msg'=>'参数错误'
+        );
+    }
+
+
 
     //curl请求
     function curl($url, $params = false, $ispost = 0, $https = 0,$header=[])

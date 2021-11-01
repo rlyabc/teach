@@ -78,8 +78,8 @@ class RegisterController extends Controller
         try{
             DB::beginTransaction();//开启事务
             $inputs=$request->input();
-            $password=$inputs['password'];
-            $name=$inputs['name'];
+            $password=trim($inputs['password']);
+            $name=trim($inputs['name']);
             $email=trim($inputs['email']);
             $users=User::where('email',$email)
                 ->get();

@@ -88,17 +88,17 @@ class LoginController extends Controller
         }
         $data=$request->getBody()->getContents();
 
-        if(($type=='teacher')&&$lineUserId){
-            User::where('email',$email)
-                ->update(array(
-                    'line_user_id'=>$lineUserId
-                ));
-        }elseif(($type=='student')&&$lineUserId){
-             Student::where('name',$name)
-            ->update(array(
-                'line_user_id'=>$lineUserId
-            ));
-        }
+//        if(($type=='teacher')&&$lineUserId){
+//            User::where('email',$email)
+//                ->update(array(
+//                    'line_user_id'=>$lineUserId
+//                ));
+//        }elseif(($type=='student')&&$lineUserId){
+//             Student::where('name',$name)
+//            ->update(array(
+//                'line_user_id'=>$lineUserId
+//            ));
+//        }
 
         return array(
             'code'=>200,

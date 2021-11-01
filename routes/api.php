@@ -62,7 +62,7 @@ Route::post('/studentLogin', 'Auth\LoginController@studentLogin');
 
 Route::post('/logout', 'Auth\LoginController@logout');
 Route::post('/logout2', 'Auth\LoginController@logout2');
-
+Route::post('/lineBind', 'LineController@lineBind')->name('lineBind');
 
 
 

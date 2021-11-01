@@ -29,14 +29,10 @@ Route::get('/line', 'LineController@getSuccess')->name('success');
 Route::get('/sessionError', 'LineController@getSessionError')->name('session_error');
 Route::get('/loginCancel', 'LineController@getLoginCancel')->name('login_cancel');
 Route::get('/login', 'LineController@getLogin')->name('login');
-Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage');
 
+Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage');
 
 Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserInfoById');
 Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
-//Route::namespace('Auth')->prefix('auth/line')->group(function () {
-//    Route::get('/', 'SocialitesLineController@line');
-//    Route::get('callback', 'SocialitesLineController@callback');
-//});
 Route::get('auth/callback', 'SocialitesLineController@callback');
