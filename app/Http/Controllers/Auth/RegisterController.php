@@ -82,6 +82,7 @@ class RegisterController extends Controller
             $name=trim($inputs['name']);
             $email=trim($inputs['email']);
             $users=User::where('email',$email)
+                ->where('email_verify',1)
                 ->get();
             if(count($users)){
                 throw new \Exception('邮箱已经存在');
@@ -93,7 +94,7 @@ class RegisterController extends Controller
                 'role'=>'teacher_admin'
             ));
             $user_id=$res->id;
-            dispatch(new Email($email,'http://www.myteach.com/emailVerify?user_id='.$user_id,array('sfsfsf')));
+            dispatch(new Email($email,'https://myteachceshi.herokuapp.com/emailVerify?user_id='.$user_id,array('sfsfsf')));
             DB::commit();
             return array(
                 'code'=>200,
