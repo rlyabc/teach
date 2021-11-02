@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/emailVerify', 'EmailController@emailVerify');
+Route::get('/emailVerify', 'TeachController@emailVerify');
 
 Auth::routes();
 
