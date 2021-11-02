@@ -45,7 +45,7 @@ class TeachController extends Controller
             $email=$inputs['email'];
             $name=$inputs['name'];
             $school_id=$inputs['school_id'];
-            $users=User::where('email',$email)->get();
+            $users=User::where('email',$email)->where('email_verify',1)->get();
             if(count($users)){
                 throw new \Exception('邮箱已经存在');
             }
