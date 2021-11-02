@@ -59,7 +59,7 @@ class LoginController extends Controller
             }elseif($type=='line'){
                $user_type=$request->input('user_type');
                if($user_type=='teacher'){
-                   $user = User::where('line_user_id',$lineUserId)->first();
+                   $user = User::where('line_user_id',$lineUserId)->where('email_verify',1)->first();
                    $token= $user->createToken('teach')->accessToken;
                }else{
                    $student_id=$request->input('student_id');
