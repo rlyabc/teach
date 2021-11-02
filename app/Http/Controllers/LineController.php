@@ -159,7 +159,7 @@ class LineController extends Controller
     }
 
     protected function getTeacherByLineUserId($line_user_id){
-        return User::where('line_user_id',$line_user_id)->first();
+        return User::where('line_user_id',$line_user_id)->where('email_verify',1)->first();
     }
 
     protected function getStudentByLineUserId($line_user_id){
@@ -191,7 +191,7 @@ class LineController extends Controller
         if($type=='teacher'){
             $email=$request->input('email');
             if($lineUserId&&$email){
-                $exists=User::where('line_user_id',$lineUserId)->first();
+                $exists=User::where('line_user_id',$lineUserId)->where('email_verify',1)->first();
                 if($exists){
                     return  array(
                         'code'=>1001,
@@ -208,6 +208,7 @@ class LineController extends Controller
                         );
                     }
                     User::where('email',$email)
+                        ->where('email_verify',1)
                         ->update(array(
                             'line_user_id'=>$lineUserId
                         ));
