@@ -26,14 +26,12 @@ function get_db_config()
 
 function get_passport_private_key()
 {
-        echo 111;
         echo getenv('PASSPORT_PRIVATE_KEY');
         return getenv('PASSPORT_PRIVATE_KEY');
 
 }
 function get_passport_public_key()
 {
-    echo 111;
     echo getenv('PASSPORT_PUBLIC_KEY');
     return getenv('PASSPORT_PUBLIC_KEY');
 

@@ -37,17 +37,17 @@ class PasspordAdminServiceProvider extends BasePassportServiceProvider
      *
      * @return \League\OAuth2\Server\AuthorizationServer
      */
-    public function makeAuthorizationServer()
-    {
-        $private_key=get_passport_private_key();
-        return new AuthorizationServer(
-            $this->app->make(ClientRepository::class),
-            $this->app->make(AccessTokenRepository::class),
-            $this->app->make(ScopeRepository::class),
-            $private_key,
-            app('encrypter')->getKey()
-        );
-    }
+//    public function makeAuthorizationServer()
+//    {
+//        $private_key=get_passport_private_key();
+//        return new AuthorizationServer(
+//            $this->app->make(ClientRepository::class),
+//            $this->app->make(AccessTokenRepository::class),
+//            $this->app->make(ScopeRepository::class),
+//            $private_key,
+//            app('encrypter')->getKey()
+//        );
+//    }
 
 
     /**
@@ -55,15 +55,15 @@ class PasspordAdminServiceProvider extends BasePassportServiceProvider
      *
      * @return void
      */
-    protected function registerResourceServer()
-    {
-        $public_key=get_passport_public_key();
-        $this->app->singleton(ResourceServer::class, function () use($public_key) {
-            return new ResourceServer(
-                $this->app->make(AccessTokenRepository::class),
-                $public_key
-            );
-        });
-    }
+//    protected function registerResourceServer()
+//    {
+//        $public_key=get_passport_public_key();
+//        $this->app->singleton(ResourceServer::class, function () use($public_key) {
+//            return new ResourceServer(
+//                $this->app->make(AccessTokenRepository::class),
+//                $public_key
+//            );
+//        });
+//    }
 
 }
