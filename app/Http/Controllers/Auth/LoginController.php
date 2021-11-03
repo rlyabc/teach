@@ -49,7 +49,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        try {
+//        try {
            $type=$request->input('type');
             $lineUserId=$request->input('line_user_id');
            if($type=='teacher'){
@@ -81,12 +81,12 @@ class LoginController extends Controller
                );
            }
 
-        } catch (\Exception $e) {
-            return array(
-                'code'=>1001,
-                'msg' =>'账号验证失败1'
-            );
-        }
+//        } catch (\Exception $e) {
+//            return array(
+//                'code'=>1001,
+//                'msg' =>'账号验证失败1'
+//            );
+//        }
 
         if ($request->getStatusCode() == 401) {
             return array(
@@ -96,17 +96,6 @@ class LoginController extends Controller
         }
         $data=$request->getBody()->getContents();
 
-//        if(($type=='teacher')&&$lineUserId){
-//            User::where('email',$email)
-//                ->update(array(
-//                    'line_user_id'=>$lineUserId
-//                ));
-//        }elseif(($type=='student')&&$lineUserId){
-//             Student::where('name',$name)
-//            ->update(array(
-//                'line_user_id'=>$lineUserId
-//            ));
-//        }
 
         return array(
             'code'=>200,
