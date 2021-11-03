@@ -61,8 +61,8 @@
         "post-install-cmd": [
             "chmod -R 777 storage",
             "php artisan passport:keys",
-            "echo -n $_ENV['PASSPORT_PRIVATE_KEY'] > storage/oauth-private.key",
-            "echo -n $_ENV['PASSPORT_PUBLIC_KEY'] > storage/oauth-public.key"
+            "echo $_ENV['PASSPORT_PRIVATE_KEY'] > storage/oauth-private.key",
+            "echo $_ENV['PASSPORT_PUBLIC_KEY'] > storage/oauth-public.key"
         ]
     },
     "config": {
