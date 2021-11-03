@@ -15,16 +15,16 @@ class CreateMessageNotifyTable extends Migration
     {
         Schema::create('message_notify', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('send_user_id');
-            $table->integer('receive_user_id');
-            $table->string('send_student_id');
-            $table->integer('receive_student_id');
+            $table->integer('send_user_id')->nullable($value = true);
+            $table->integer('receive_user_id')->nullable($value = true);
+            $table->string('send_student_id')->nullable($value = true);
+            $table->integer('receive_student_id')->nullable($value = true);
             $table->tinyInteger('status')->default(0);
-            $table->text('content');
-            $table->text('path');
-            $table->integer('pid');
-            $table->string('receive_user_type');
-            $table->string('send_user_type');
+            $table->text('content')->nullable($value = true);
+            $table->text('path')->nullable($value = true);
+            $table->integer('pid')->nullable($value = true);
+            $table->string('receive_user_type')->nullable($value = true);
+            $table->string('send_user_type')->nullable($value = true);
             $table->timestamps();
         });
     }

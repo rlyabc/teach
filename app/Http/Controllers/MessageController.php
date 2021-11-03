@@ -39,7 +39,7 @@ class MessageController extends Controller
                        $query->where(function ($query)use($user_id,$type){
                            $query->where('send_student_id',$user_id)
                            ;
-                       })->Orwhere(function ($query)use($user_id,$type){
+                       })->orWhere(function ($query)use($user_id,$type){
                            $query->where('receive_student_id',$user_id)
                            ;
                        });
@@ -48,7 +48,7 @@ class MessageController extends Controller
                            $query->where('send_user_id',$user_id)
 //                               ->where('send_user_type',$type)
                            ;
-                       })->Orwhere(function ($query)use($user_id,$type){
+                       })->orWhere(function ($query)use($user_id,$type){
                            $query->where('receive_user_id',$user_id)
                            ;
                        });
@@ -67,7 +67,7 @@ class MessageController extends Controller
                     ->with('receive_student_user')
                     ->where(function ($query) use($id,$path){
                         $query->where('id',$id)
-                            ->Orwhere('path','like','%'.$path.'%');
+                            ->orWhere('path','like','%'.$path.'%');
                     })->get();
                 if($treeData){
                     $treeData=$treeData->toArray();

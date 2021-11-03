@@ -297,7 +297,7 @@ class TeachController extends Controller
             })->first();
             $res=User::where(function ($query)use($schoolRes){
                     $query->where('school_id',$schoolRes['id'])
-                            ->Orwhere('id',$schoolRes['user_id']);
+                            ->orWhere('id',$schoolRes['user_id']);
                     })
                 ->with(['follow'=>function($query)use($id){
                     $query->where('student_id',$id);
