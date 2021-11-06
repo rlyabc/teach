@@ -33,6 +33,12 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('/addMessage', 'MessageController@addMessage');
     Route::post('/replyMessage', 'MessageController@replyMessage');
 
+    Route::post('/getMessageDataByPusher', 'MessagePusherController@getMessageData');
+    Route::post('/updateMessageStatusByPusher', 'MessagePusherController@updateMessageStatus');
+    Route::post('/addMessageByPusher', 'MessagePusherController@addMessage');
+    Route::post('/replyMessageByPusher', 'MessagePusherController@replyMessage');
+    Route::post('/getNotifySumByUserId', 'MessagePusherController@getNotifySumByUserId');
+
 
     Route::get('/getFollowDataByUseId', 'TeachController@getFollowDataByUseId');
     Route::get('/getFollowDataByStudentId', 'TeachController@getFollowDataByStudentId');
@@ -64,5 +70,7 @@ Route::post('/logout', 'Auth\LoginController@logout');
 Route::post('/logout2', 'Auth\LoginController@logout2');
 Route::post('/lineBind', 'LineController@lineBind')->name('lineBind');
 
+
+Route::post('/push/auth', 'MessagePusherController@auth')->name('auth');
 
 

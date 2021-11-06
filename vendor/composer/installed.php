@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '4c85e14eabe4db711e0e1099258f1ab917906d9c',
+        'reference' => '22cc9ee2279346e460d7578948f5464da5ef12cf',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -418,7 +418,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '4c85e14eabe4db711e0e1099258f1ab917906d9c',
+            'reference' => '22cc9ee2279346e460d7578948f5464da5ef12cf',
             'dev_requirement' => false,
         ),
         'laravel/passport' => array(
@@ -777,6 +777,15 @@
             'install_path' => __DIR__ . '/../psy/psysh',
             'aliases' => array(),
             'reference' => '90da7f37568aee36b116a030c5f99c915267edd4',
+            'dev_requirement' => false,
+        ),
+        'pusher/pusher-php-server' => array(
+            'pretty_version' => 'v3.4.1',
+            'version' => '3.4.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../pusher/pusher-php-server',
+            'aliases' => array(),
+            'reference' => 'a5fcdc65efd8d9a8291efbe01d326ec7ef5d5cee',
             'dev_requirement' => false,
         ),
         'ralouphie/getallheaders' => array(

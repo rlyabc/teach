@@ -32,3 +32,4 @@ Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage')
 Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserInfoById');
 Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
+

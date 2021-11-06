@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Events\MessageSent;
 use App\Jobs\Email;
 use App\MessageNotify;
 use App\School;
@@ -16,8 +17,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use mysql_xdevapi\Exception;
+use Pusher\Pusher;
 
-class MessageController extends Controller
+class MessagePusherController extends Controller
 {
     use AuthenticatesUsers;
 
@@ -105,7 +107,7 @@ class MessageController extends Controller
 
             return array(
                 'code'=>200,
-                'message'=>'操作成功'
+                'msg'=>'操作成功'
             );
         }catch (\Exception $exception){
             return array(
@@ -151,7 +153,7 @@ class MessageController extends Controller
 
             return array(
                 'code'=>200,
-                'message'=>'操作成功'
+                'msg'=>'操作成功'
             );
         }catch (\Exception $exception){
             return array(
@@ -175,7 +177,7 @@ class MessageController extends Controller
 //                ->where('status',0)
 //                ->count();
 //        }
-//        $this->socket($send_user_id,$messageNum);
+//        $this->pushMessage($send_user_id,$messageNum);
 //        return ;
 //    }
 
@@ -193,7 +195,7 @@ class MessageController extends Controller
                 ->where('status',0)
                 ->count();
         }
-        $this->socket($receive_user_id,$messageNum,$receive_type);
+        $this->pushMessage($receive_user_id,$messageNum,$receive_type);
         return ;
     }
 
@@ -247,25 +249,11 @@ class MessageController extends Controller
 
 
 
-    public function socket($user_id,$messageNotifyCount,$type='teacher'){
+    public function pushMessage($user_id,$messageNotifyCount,$type='teacher'){
         // 建立socket连接到内部推送端口
         try{
-            $client = stream_socket_client('tcp://127.0.0.1:5678', $errno, $errmsg, 1);
-
-            // 推送的数据，包含uid字段，表示是给这个uid推送
-
             $data = array( 'type'=>$type,'show_num'=>$messageNotifyCount,'is_broadcast'=>0,'uid'=>$user_id);
-
-            // 发送数据，注意5678端口是Text协议的端口，Text协议需要在数据末尾加上换行符
-
-            fwrite($client, json_encode($data)."\n");
-
-            // 读取推送结果
-            $res=fread($client, 8192);
-            if(trim($res)=='success'){
-                return 'success';
-            }
-            return 'fail';
+            broadcast(new MessageSent($user_id, $data,$type));
         }catch (\Exception $exception){
             return 'fail';
         }
@@ -274,13 +262,34 @@ class MessageController extends Controller
     }
 
 
-    public function getMessageNotifyByReceiveId(Request $request){
+    public function getNotifySumByUserId(Request $request){
         $type=$request->input('type');
-        $id=$request->input('id');
+        $id=$request->input('uid');
         if($type=='teacher'){
-            return MessageNotify::where('receive_user_type',$type)->where('receive_user_id',$id)->where('status',0)->get();
+            $count=MessageNotify::where('receive_user_type',$type)->where('receive_user_id',$id)->where('status',0)->count();
+        }else{
+            $count=MessageNotify::where('receive_user_type',$type)->where('receive_student_id',$id)->where('status',0)->count();
         }
-        return MessageNotify::where('receive_user_type',$type)->where('receive_student_id',$id)->where('status',0)->get();
+
+        return array(
+            'code'=>200,
+            'msg'=>'操作成功',
+            'data'=>$count
+        );
+    }
+
+    public function auth(Request $request){
+        $channel=$request->channel_name;
+        $socket_id=$request->socket_id;
+        $app_key='07a4dd252d3d733a0c26';
+        $app_sec='379c64bfe31b75beb56e';
+        $app_id='1290170';
+        $pusher=new Pusher($app_key, $app_sec, $app_id, [
+            'cluster' => 'ap1',
+            'encrypted' => true,
+            'useTLS' => false
+        ]);
+        return $res=$pusher->socket_auth($channel,$socket_id);
     }
 
 

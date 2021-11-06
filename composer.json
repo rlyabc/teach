@@ -15,6 +15,7 @@
         "lcobucci/jwt": "3.3.3",
         "paragonie/random_compat": "2.*",
         "paragonie/sodium_compat": "^1.17",
+        "pusher/pusher-php-server": "~3.0",
         "socialiteproviders/line": "v2.1"
     },
     "require-dev": {
