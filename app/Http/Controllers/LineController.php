@@ -47,8 +47,11 @@ class LineController extends Controller
         session_start();
         $state = time().'xxx';
         $nonce =  time().'sss';
-        session($this->lineWebLoginState,$state);
-        session($this->nonce,$nonce);
+
+//        $nonce =  'sss';
+
+        $_SESSION[$this->lineWebLoginState]=$state;
+        $_SESSION[$this->nonce]=$nonce;
         $scope="profile%20openid";
         $url="https://access.line.me/oauth2/v2.1/authorize?response_type=code"
             ."&client_id=" .$this->channelId
@@ -84,12 +87,10 @@ class LineController extends Controller
                 Log::info('errorMessage:'.$inputs['errorMessage']);
                 return redirect('/loginCancel');
             }
-            $lineWebLoginState=session($this->lineWebLoginState);
-            Log::info('$lineWebLoginState:'.$lineWebLoginState);
-            if ($state!=$lineWebLoginState){
+            if (isset($_SESSION[$this->lineWebLoginState])&&$state!=$_SESSION[$this->lineWebLoginState]){
                 return redirect('/sessionError');
             }
-            session($this->lineWebLoginState,null);
+            unset($_SESSION[$this->lineWebLoginState]);
 
             $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
@@ -100,7 +101,7 @@ class LineController extends Controller
                 throw new \Exception('获取token失败');
             }
             Log::info('tokennnnn:'.$token);
-            session($this->accessToken,$token);
+            $_SESSION[$this->accessToken]=$token;
             return redirect('/line');
         }catch (\Exception $exception){
             return array(
@@ -124,12 +125,18 @@ class LineController extends Controller
     }
 
     public function getSuccess(){
+
         session_start();
-        $accessToken=session($this->accessToken);
-        if(empty($accessToken)){
+        if(empty($_SESSION[$this->accessToken])){
             return redirect('/gotoauthpage');
         }
-        $token=json_decode($accessToken,true);
+        $accesstoken=$_SESSION[$this->accessToken];
+        $token=json_decode($accesstoken,true);
+
+        if(empty($_SESSION[$this->accessToken])){
+            return redirect('/');
+        }
+        JWT::$leeway = 60; // $leeway in seconds
         $key=$this->channelSecret;
         $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
         Log::info('id_token1:'.$idToken);
@@ -163,7 +170,7 @@ class LineController extends Controller
             'client_id'=>$this->channelId,
             'client_secret'=>$this->channelSecret
         ];
-//        $client=new Client();
+        $client=new Client();
 //      return  $client->request('POST',$this->lineBaseUrl,$params);
         $params=http_build_query($params);
        return $curlRes=curl($this->lineBaseUrl,$params,1,1);
