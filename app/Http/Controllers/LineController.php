@@ -82,11 +82,11 @@ class LineController extends Controller
                 Log::info('errorMessage:'.$inputs['errorMessage']);
                 return redirect('/loginCancel');
             }
-            $lineWebLoginState=session($this->lineWebLoginState);
-            Log::info('$lineWebLoginState:'.$lineWebLoginState);
-            if ($state!=$lineWebLoginState){
-                return redirect('/sessionError');
-            }
+//            $lineWebLoginState=session($this->lineWebLoginState);
+//            Log::info('$lineWebLoginState:'.$lineWebLoginState);
+//            if ($state!=$lineWebLoginState){
+//                return redirect('/sessionError');
+//            }
             session($this->lineWebLoginState,null);
 
             $curlRes=$this->getAccessToken($code);
