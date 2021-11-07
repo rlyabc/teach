@@ -47,11 +47,8 @@ class LineController extends Controller
         session_start();
         $state = time().'xxx';
         $nonce =  time().'sss';
-
-//        $nonce =  'sss';
-
-        $_SESSION[$this->lineWebLoginState]=$state;
-        $_SESSION[$this->nonce]=$nonce;
+        session($this->lineWebLoginState,$state);
+        session($this->nonce,$nonce);
         $scope="profile%20openid";
         $url="https://access.line.me/oauth2/v2.1/authorize?response_type=code"
             ."&client_id=" .$this->channelId
@@ -87,10 +84,11 @@ class LineController extends Controller
                 Log::info('errorMessage:'.$inputs['errorMessage']);
                 return redirect('/loginCancel');
             }
-            if (isset($_SESSION[$this->lineWebLoginState])&&$state!=$_SESSION[$this->lineWebLoginState]){
+            $lineWebLoginState=session($this->lineWebLoginState);
+            if ($state!=$lineWebLoginState){
                 return redirect('/sessionError');
             }
-            unset($_SESSION[$this->lineWebLoginState]);
+            session($this->lineWebLoginState,null);
 
             $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
@@ -101,7 +99,7 @@ class LineController extends Controller
                 throw new \Exception('获取token失败');
             }
             Log::info('tokennnnn:'.$token);
-            $_SESSION[$this->accessToken]=$token;
+            session($this->accessToken,$token);
             return redirect('/line');
         }catch (\Exception $exception){
             return array(
@@ -163,7 +161,7 @@ class LineController extends Controller
             'client_id'=>$this->channelId,
             'client_secret'=>$this->channelSecret
         ];
-        $client=new Client();
+//        $client=new Client();
 //      return  $client->request('POST',$this->lineBaseUrl,$params);
         $params=http_build_query($params);
        return $curlRes=curl($this->lineBaseUrl,$params,1,1);
