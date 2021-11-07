@@ -37,19 +37,19 @@ class LineController extends Controller
 
     protected  $authorizationCode='authorization_code';
     protected  $refreshToken='refresh_token';
-    protected  $channelId='1656575554';
-    protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
+//    protected  $channelId='1656575554';
+//    protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
+    protected  $channelId='1656610327';
+    protected  $channelSecret='aec810d7d878bf2638d1a9bc7f710df3';
+
     protected  $callbackUrl='https://myteachceshi.herokuapp.com/auth';
 
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
     public function gotoauthpage(){
         session_start();
-        $state = time().'xxx';
-        $nonce =  time().'sss';
-
-//        $nonce =  'sss';
-
+        $state = time().mt_rand(0,9999);
+        $nonce =  time().mt_rand(0,9999);
         $_SESSION[$this->lineWebLoginState]=$state;
         $_SESSION[$this->nonce]=$nonce;
         $scope="profile%20openid";
