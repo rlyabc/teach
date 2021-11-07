@@ -83,6 +83,7 @@ class LineController extends Controller
                 return redirect('/loginCancel');
             }
             $lineWebLoginState=session($this->lineWebLoginState);
+            Log::info('$lineWebLoginState:'.$lineWebLoginState);
             if ($state!=$lineWebLoginState){
                 return redirect('/sessionError');
             }
