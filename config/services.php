@@ -55,5 +55,8 @@ return [
         'client_secret' => env('Line_SECRET'),
         'redirect' => env('Line_REDIRECT_URI'),
     ],
-
+    'LineChannelSecret'=>env('LineChannelSecret'),
+    'LineChannelId'=>env('LineChannelId'),
+    'LineLoginCallbackUrl'=>env('LineLoginCallbackUrl'),
+    'LineMessageAccessToken'=>env('LineMessageAccessToken')
 ];

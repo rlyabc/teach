@@ -27,11 +27,9 @@ Route::get('/sessionError', 'LineController@getSessionError')->name('session_err
 Route::get('/loginCancel', 'LineController@getLoginCancel')->name('login_cancel');
 Route::get('/login', 'LineController@getLogin')->name('login');
 
-Route::get('/gotoauthpage', 'LineController@gotoauthpage')->name('gotoauthpage');
+Route::get('/gotoAuthPage', 'LineController@gotoAuthPage')->name('gotoAuthPage');
 
 Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserInfoById');
 Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
-
 Route::post('/message/callback', 'LineController@messageCallback')->name('messageCallback');
-Route::get('/getAudienceGroupId', 'LineController@getAudienceGroupId')->name('getAudienceGroupId');

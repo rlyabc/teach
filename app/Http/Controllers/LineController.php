@@ -37,16 +37,15 @@ class LineController extends Controller
 
     protected  $authorizationCode='authorization_code';
     protected  $refreshToken='refresh_token';
-//    protected  $channelId='1656575554';
-//    protected  $channelSecret='4685b128c20fc655b392f09b0413442f';
-    protected  $channelId='1656610327';
-    protected  $channelSecret='aec810d7d878bf2638d1a9bc7f710df3';
 
-    protected  $callbackUrl='https://myteachceshi.herokuapp.com/auth';
+//    protected  $channelId='1656610327';
+//    protected  $channelSecret='aec810d7d878bf2638d1a9bc7f710df3';
+
+//    protected  $callbackUrl='https://myteachceshi.herokuapp.com/auth';
 
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
-    public function gotoauthpage(){
+    public function gotoAuthPage(){
         session_start();
         $state = time().mt_rand(0,9999);
         $nonce =  time().mt_rand(0,9999);
@@ -54,8 +53,8 @@ class LineController extends Controller
         $_SESSION[$this->nonce]=$nonce;
         $scope="profile%20openid";
         $url="https://access.line.me/oauth2/v2.1/authorize?response_type=code"
-            ."&client_id=" .$this->channelId
-            ."&redirect_uri=".$this->callbackUrl
+            ."&client_id=" .config('services.LineChannelId')
+            ."&redirect_uri=".config('services.LineLoginCallbackUrl')
             ."&state=".$state
             ."&scope=".$scope
             ."&nonce=".$nonce
@@ -138,7 +137,7 @@ class LineController extends Controller
             return redirect('/');
         }
         JWT::$leeway = 60; // $leeway in seconds
-        $key=$this->channelSecret;
+        $key=config('services.LineChannelSecret');
         $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
         $idToken =json_decode(json_encode($idToken),true);
         $line_user_id=$idToken['sub'];
@@ -166,11 +165,11 @@ class LineController extends Controller
         $params=[
             'grant_type'=>$this->authorizationCode,
             'code'=>$code,
-            'redirect_uri'=>$this->callbackUrl,
-            'client_id'=>$this->channelId,
-            'client_secret'=>$this->channelSecret
+            'redirect_uri'=>config('services.LineLoginCallbackUrl'),
+            'client_id'=>config('services.LineChannelId'),
+            'client_secret'=>config('services.LineChannelSecret')
         ];
-        $client=new Client();
+//        $client=new Client();
 //      return  $client->request('POST',$this->lineBaseUrl,$params);
         $params=http_build_query($params);
        return $curlRes=curl($this->lineBaseUrl,$params,1,1);
@@ -253,11 +252,13 @@ class LineController extends Controller
         $userId=$inputs['events'][0]['source']['userId'];
         Log::info('userId:'.$userId);
         $exist=LineMessageUser::where('message_user_id',$userId)->first();
+//        4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU=
+        $messageAccessToken=config('services.LineMessageAccessToken');
         if(!$exist){
 
              $header=[
                 'Content-Type:application/json',
-                'Authorization: Bearer 4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU='
+                'Authorization: Bearer '.$messageAccessToken
             ];
             $getProfileUrl="https://api.line.me/v2/bot/profile/".$userId;
             $profileRes=curl($getProfileUrl,false,0,1,$header);
@@ -270,33 +271,6 @@ class LineController extends Controller
         }
     }
 
-    //获得audienceGroupid
-    public function getAudienceGroupId(){
-
-        $key = "1636301370sss";
-        $payload = array(
-            "iss" => "http://example.org",
-            "aud" => "http://example.com",
-            "iat" => 1356999524,
-            "nbf" => 1357000000,
-            'dd'=>'sfdsda'
-        );
-        $jwt = JWT::encode($payload, $key, 'HS256');
-        $jwt='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY2Vzcy5saW5lLm1lIiwic3ViIjoiVTVhNWZlNjU1MTk5MTNiN2YwMWUyOTQ5N2Y2MTRhN2JjIiwiYXVkIjoiMTY1NjU3NTU1NCIsImV4cCI6MTYzNjMwNDk3NywiaWF0IjoxNjM2MzAxMzc3LCJub25jZSI6IjE2MzYzMDEzNzBzc3MiLCJhbXIiOlsibGluZXNzbyJdLCJuYW1lIjoi5Lu75YeM5LqRIn0.SHLl0dyNrduXlSnehbNe6QwNbwDwcolyE3o401PP2to';
-//        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-        $key=$this->channelSecret;
-
-        $decoded = JWT::decode($jwt, $key,array('HS256'));
-        print_r($decoded);
-
-//        $url='https://api.line.me/v2/bot/audienceGroup/click';
-//        $header=[
-//            'Content-Type:application/json',
-//            'Authorization: Bearer 4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU='
-//        ];
-//        $res=$this->curl($url, $params = false, $ispost = 0, 1,$header);
-//        Log::info('getAudienceGroupId:'.json_encode($res));
-    }
 
 
 
