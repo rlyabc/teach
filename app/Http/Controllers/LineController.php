@@ -139,7 +139,6 @@ class LineController extends Controller
         JWT::$leeway = 60; // $leeway in seconds
         $key=$this->channelSecret;
         $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
-        Log::info('id_token1:'.$idToken);
         $idToken =json_decode(json_encode($idToken),true);
         $line_user_id=$idToken['sub'];
         $teacherUser=$this->getTeacherByLineUserId($line_user_id);
