@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Lcobucci\JWT\Signer\Key;
 use mysql_xdevapi\Exception;
 
 class LineController extends Controller
@@ -101,8 +102,6 @@ class LineController extends Controller
             }
             Log::info('tokennnnn:'.$token);
             $_SESSION[$this->accessToken]=$token;
-//            Storage::disk('local')->put('accesstoken.txt',$token);
-//            $_SESSION['xxx']=111;
             return redirect('/line');
         }catch (\Exception $exception){
             return array(
@@ -143,9 +142,12 @@ class LineController extends Controller
 //            redirect('/');
 //        }
         $nonce=$_SESSION[$this->nonce];
+        Log::info('$nonce:'.$nonce);
+        Log::info('id_token:'.$token['id_token']);
         //unset($_SESSION[$this->nonce]);
         JWT::$leeway = 60; // $leeway in seconds
         $idToken = JWT::decode($token['id_token'], $nonce, array('HS256'));
+        Log::info('id_token1:'.$idToken);
         $idToken =json_decode(json_encode($idToken),true);
         $line_user_id=$idToken['sub'];
         $teacherUser=$this->getTeacherByLineUserId($line_user_id);
@@ -277,7 +279,21 @@ class LineController extends Controller
     }
 
     //获得audienceGroupid
-//    public function getAudienceGroupId(){
+    public function getAudienceGroupId(){
+
+        $key = "example_key";
+        $payload = array(
+            "iss" => "http://example.org",
+            "aud" => "http://example.com",
+            "iat" => 1356999524,
+            "nbf" => 1357000000,
+            'dd'=>'sfdsda'
+        );
+        $jwt = JWT::encode($payload, $key, 'HS256');
+//        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+        $decoded = JWT::decode($jwt, $key,array('HS256'));
+        print_r($decoded);
+
 //        $url='https://api.line.me/v2/bot/audienceGroup/click';
 //        $header=[
 //            'Content-Type:application/json',
@@ -285,7 +301,7 @@ class LineController extends Controller
 //        ];
 //        $res=$this->curl($url, $params = false, $ispost = 0, 1,$header);
 //        Log::info('getAudienceGroupId:'.json_encode($res));
-//    }
+    }
 
 
 
