@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Jobs\Email;
+use App\LineMessageUser;
 use App\MessageNotify;
 use App\School;
 use App\Student;
@@ -304,6 +305,12 @@ class LineController extends Controller
         //获得message-user-id
         $userId=$inputs['events'][0]['source']['userId'];
         Log::info('userId:'.$userId);
+        $exist=LineMessageUser::where('message_user_id',$userId)->find();
+        if(!$exist){
+            LineMessageUser::create(array(
+                'message_user_id'=>$userId
+            ));
+        }
     }
 
     //获得audienceGroupid

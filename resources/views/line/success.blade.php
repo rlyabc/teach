@@ -55,6 +55,10 @@
                             @endforeach
                         @endif
                     </ul>
+
+                    <br>
+                    <div>用line app扫码，加入聊天室，发送任意语句，以后便可以受到系统消息通知：</div>
+                    <img src="{{ URL::asset('img/messageQrcode.png')}}" class="profile-img img-circle" />
                 </div>
             </div>
         </div>
