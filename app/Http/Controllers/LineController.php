@@ -125,17 +125,11 @@ class LineController extends Controller
     }
 
     public function getSuccess(){
-        if(empty(session($this->accessToken))){
+        $accessToken=session($this->accessToken);
+        if(empty($accessToken)){
             return redirect('/gotoauthpage');
         }
-
-
-        if(empty(session($this->accessToken))){
-            return redirect('/');
-        }
-        $accesstoken=session($this->accessToken);
-        $token=json_decode($accesstoken,true);
-        JWT::$leeway = 60; // $leeway in seconds
+        $token=json_decode($accessToken,true);
         $key=$this->channelSecret;
         $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
         Log::info('id_token1:'.$idToken);
