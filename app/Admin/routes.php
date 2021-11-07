@@ -17,4 +17,5 @@ Route::group([
     Route::resource('users', 'UsersController');
     Route::resource('students', 'StudentsController');
     Route::resource('schools', 'SchoolsController');
+    Route::resource('lineusers', 'LineUsersController');
 });

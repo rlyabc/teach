@@ -253,7 +253,7 @@ class LineController extends Controller
 
 
     //curl请求
-    function curl($url, $params = false, $ispost = 0, $https = 0,$header=[])
+    public function curl($url, $params = false, $ispost = 0, $https = 0,$header=[])
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
@@ -305,7 +305,7 @@ class LineController extends Controller
         //获得message-user-id
         $userId=$inputs['events'][0]['source']['userId'];
         Log::info('userId:'.$userId);
-        $exist=LineMessageUser::where('message_user_id',$userId)->find();
+        $exist=LineMessageUser::where('message_user_id',$userId)->first();
         if(!$exist){
             LineMessageUser::create(array(
                 'message_user_id'=>$userId
