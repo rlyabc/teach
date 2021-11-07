@@ -141,7 +141,7 @@ class LineUsersController extends Controller
             'Content-Type:application/json',
             'Authorization: Bearer '.$messageAccessToken
         ];
-        $params=json_encode($params);
+        $params=http_build_query($params);
        return $this->curl($url,$params,1,1,$header);
     }
 
