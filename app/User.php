@@ -39,16 +39,6 @@ class User extends Authenticatable
     }
 
 
-//    public function findAccessToken($login)
-//    {
-//        return $this->where('email', $login)->where('email_verify', 1)->first();
-//    }
-
-//    function school_teacher()
-//    {
-//        return $this->belongsToMany('App\School', 'school_teacher', 'user_id','school_id');
-//    }
-
     function school()
     {
         return $this->belongsTo('App\School', 'school_id', 'id');

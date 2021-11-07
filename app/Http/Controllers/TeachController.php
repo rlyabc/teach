@@ -132,9 +132,19 @@ class TeachController extends Controller
         }
     }
 
+
     public function getTeacherData(){
         try{
-            $res=User::where('role','teacher')->paginate(10);
+            $userId=Auth::id();
+            School::where('user_id',$userId)->get();
+            $res=User::where('role','teacher')
+                ->with(['school',function ($query)use($userId){
+                    $query->where('user_id',$userId);
+                }])
+//                ->whereHas('school',function ($query)use($userId){
+//                    $query->where('user_id',$userId);
+//                })
+                ->paginate(10);
             return array(
                 'code'=>200,
                 'data'=>$res
