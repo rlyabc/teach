@@ -58,7 +58,8 @@ class LineController extends Controller
             ."&redirect_uri=".$this->callbackUrl
             ."&state=".$state
             ."&scope=".$scope
-            ."&nonce=".$nonce;
+            ."&nonce=".$nonce
+            ."&bot_prompt=normal";
         return redirect($url);
     }
 
