@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view()->file(public_path().'/index.html');
 });
 
-
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 Route::get('/emailVerify', 'TeachController@emailVerify');
 
 Auth::routes();

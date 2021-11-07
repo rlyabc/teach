@@ -16,6 +16,7 @@
         "paragonie/random_compat": "2.*",
         "paragonie/sodium_compat": "^1.17",
         "pusher/pusher-php-server": "~3.0",
+        "rap2hpoutre/laravel-log-viewer": "^2.0",
         "socialiteproviders/line": "v2.1"
     },
     "require-dev": {
