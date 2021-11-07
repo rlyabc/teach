@@ -19,6 +19,6 @@ class AuthenticateApi extends Authenticate
             return $this->auth->shouldUse('student_api');
         }
 
-        throw new UnauthorizedHttpException('1121212', 'Unauthenticated');
+        throw new UnauthorizedHttpException('', 'Unauthenticated111');
     }
 }
