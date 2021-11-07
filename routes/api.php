@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => ['auth:api']], function(){
+    Route::get('/getTeachersDataByStudentId', 'TeachController@getTeachersDataByStudentId');
+
+
+});
+Route::group(['middleware' => ['auth:api']], function(){
     Route::post('/addTeacher', 'TeachController@addTeacher');
     Route::post('/addSchool', 'TeachController@addSchool');
     Route::post('/addStudent', 'TeachController@addStudent');
@@ -25,8 +30,6 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('/getStudentsByUserId', 'TeachController@getStudentsByUserId');
     Route::get('/getTeachersByUserId', 'TeachController@getTeachersByUserId');
     Route::get('/getTeacherAdminsByStudentId', 'TeachController@getTeacherAdminsByStudentId');
-    Route::get('/getTeachersDataByStudentId', 'TeachController@getTeachersDataByStudentId');
-
 
     Route::post('/getMessageData', 'MessageController@getMessageData');
     Route::post('/updateMessageStatus', 'MessageController@updateMessageStatus');
