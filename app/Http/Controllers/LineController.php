@@ -310,9 +310,12 @@ class LineController extends Controller
             LineMessageUser::create(array(
                 'message_user_id'=>$userId
             ));
-
+             $header=[
+                'Content-Type:application/json',
+                'Authorization: Bearer 4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU='
+            ];
             $getProfileUrl="https://api.line.me/v2/bot/profile/".$userId;
-            $profileRes=$this->curl($getProfileUrl,false,0);
+            $profileRes=$this->curl($getProfileUrl,false,0,1,$header);
             Log::info('profileRes:'.json_encode($profileRes));
         }
     }
