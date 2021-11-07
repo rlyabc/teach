@@ -303,6 +303,13 @@ class LineController extends Controller
         Log::info('messageCallback:'.json_encode($inputs));
     }
 
+    //获得audienceGroupid
+    public function getAudienceGroupId(){
+        $url='https://api.line.me/v2/bot/audienceGroup/click';
+        $res=curl($url, $params = false, $ispost = 0, 1,$header=[]);
+        Log::info('getAudienceGroupId:'.json_encode($res));
+    }
+
 
 
 }

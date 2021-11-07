@@ -34,3 +34,4 @@ Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyBy
 
 
 Route::post('/message/callback', 'LineController@messageCallback')->name('messageCallback');
+Route::post('/getAudienceGroupId', 'LineController@getAudienceGroupId')->name('getAudienceGroupId');
