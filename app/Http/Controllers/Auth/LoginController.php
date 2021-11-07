@@ -127,8 +127,8 @@ class LoginController extends Controller
         $request = $client->request('POST', request()->root() . '/oauth/token', [
             'form_params' =>[
                 'grant_type' => 'password',
-                'client_id' => config('services.api.appid'),
-                'client_secret' => config('services.api.secret'),
+                'client_id' => config('services.student_api.appid'),
+                'client_secret' => config('services.student_api.secret'),
                 'username' => $request->input('name'),
                 'password' => $request->input('password'),
                 'scope' => '*',
