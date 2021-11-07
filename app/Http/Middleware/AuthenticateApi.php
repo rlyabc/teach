@@ -14,9 +14,9 @@ class AuthenticateApi extends Authenticate
         if ($this->auth->guard('api')->check()) {
             return $this->auth->shouldUse('api');
         }
-//        if ($this->auth->guard('student_api')->check()) {
-//            return $this->auth->shouldUse('student_api');
-//        }
+        if ($this->auth->guard('student_api')->check()) {
+            return $this->auth->shouldUse('student_api');
+        }
         throw new UnauthorizedHttpException('', 'Unauthenticated');
     }
 }
