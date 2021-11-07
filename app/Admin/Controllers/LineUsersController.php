@@ -131,10 +131,12 @@ class LineUsersController extends Controller
         $url='https://api.line.me/v2/bot/message/multicast';
         $params=[
             "to"=> [$userId],
-            "messages"=>array(
-                'type'=>'text',
-                'text'=>$content
-            )
+            "messages"=>[
+                array(
+                    'type'=>'text',
+                    'text'=>$content
+                )
+            ]
         ];
         $messageAccessToken='4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU=';
         $header=[
