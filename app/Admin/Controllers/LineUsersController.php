@@ -119,7 +119,7 @@ class LineUsersController extends Controller
     public function update($id,Request $request,Content $content){
         $contents=$request->input('contents');
         $users=LineMessageUser::where('id',$id)->first();
-       return $this->sendMessageToLineUser($users['message_user_id'],$contents);
+        $this->sendMessageToLineUser($users['message_user_id'],$contents);
         $contents=array_merge(json_decode($users,true),$contents);
         LineMessageUser::where('id',$id)->update(array(
             'contents'=>json_encode($contents,JSON_UNESCAPED_UNICODE)
