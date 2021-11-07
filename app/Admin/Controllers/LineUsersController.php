@@ -74,6 +74,7 @@ class LineUsersController extends Controller
         $grid = new Grid(new LineMessageUser());
 
         $grid->id('Id')->sortable();
+        $grid->name('line名称');
         $grid->message_user_id('messageUserId');
 
         $grid->created_at('注册时间');
