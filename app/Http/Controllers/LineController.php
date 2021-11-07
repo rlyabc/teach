@@ -44,7 +44,6 @@ class LineController extends Controller
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
     public function gotoauthpage(){
-        session_start();
         $state = time().'xxx';
         $nonce =  time().'sss';
         session($this->lineWebLoginState,$state);
@@ -62,7 +61,6 @@ class LineController extends Controller
 
     public function auth(Request $request){
         try{
-            session_start();
             $inputs=$request->input();
             $code=$inputs['code'];
             $state=$inputs['state'];
