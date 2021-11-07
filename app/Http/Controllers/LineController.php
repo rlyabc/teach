@@ -301,18 +301,21 @@ class LineController extends Controller
     public function messageCallback(Request $request){
         $inputs=$request->input();
         Log::info('messageCallback:'.json_encode($inputs));
+        //获得message-user-id
+        $userId=$inputs['events'][0]['source']['userId'];
+        Log::info('userId:'.$userId);
     }
 
     //获得audienceGroupid
-    public function getAudienceGroupId(){
-        $url='https://api.line.me/v2/bot/audienceGroup/click';
-        $header=[
-            'Content-Type:application/json',
-            'Authorization: Bearer 4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU='
-        ];
-        $res=$this->curl($url, $params = false, $ispost = 0, 1,$header);
-        Log::info('getAudienceGroupId:'.json_encode($res));
-    }
+//    public function getAudienceGroupId(){
+//        $url='https://api.line.me/v2/bot/audienceGroup/click';
+//        $header=[
+//            'Content-Type:application/json',
+//            'Authorization: Bearer 4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU='
+//        ];
+//        $res=$this->curl($url, $params = false, $ispost = 0, 1,$header);
+//        Log::info('getAudienceGroupId:'.json_encode($res));
+//    }
 
 
 
