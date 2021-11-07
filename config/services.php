@@ -41,8 +41,8 @@ return [
         'callback' => 'https://myteachceshi.herokuapp.com/auth/callback'
     ],
     'student_api' => [
-        'appid' => env('CLIENT_ID'),
-        'secret' => env('CLIENT_SECRET'),
+        'appid' => env('CLIENT_ID2'),
+        'secret' => env('CLIENT_SECRET2'),
         'callback' => 'https://myteachceshi.herokuapp.com/auth/callback'
     ],
     'line_api' => [
