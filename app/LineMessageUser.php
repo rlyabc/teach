@@ -17,7 +17,7 @@ class LineMessageUser extends Model
      * @var array
      */
     protected $fillable = [
-        'message_user_id'
+        'message_user_id','name'
     ];
 
     /**
