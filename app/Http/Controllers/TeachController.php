@@ -138,7 +138,7 @@ class TeachController extends Controller
             $userId=Auth::id();
             School::where('user_id',$userId)->get();
             $res=User::where('role','teacher')
-                ->with(['school',function ($query)use($userId){
+                ->with(['school'=>function ($query)use($userId){
                     $query->where('user_id',$userId);
                 }])
 //                ->whereHas('school',function ($query)use($userId){
