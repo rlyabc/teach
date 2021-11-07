@@ -24,19 +24,6 @@ function get_db_config()
 }
 
 
-function get_passport_private_key()
-{
-        echo getenv('PASSPORT_PRIVATE_KEY');
-        return getenv('PASSPORT_PRIVATE_KEY');
-
-}
-function get_passport_public_key()
-{
-    echo getenv('PASSPORT_PUBLIC_KEY');
-    return getenv('PASSPORT_PUBLIC_KEY');
-
-}
-
 function curl($url, $params = false, $ispost = 0, $https = 0,$header=[])
 {
     $ch = curl_init();
