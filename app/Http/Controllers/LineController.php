@@ -44,6 +44,7 @@ class LineController extends Controller
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
     public function gotoauthpage(){
+        session_start();
         $state = time().'xxx';
         $nonce =  time().'sss';
         session($this->lineWebLoginState,$state);
@@ -61,6 +62,7 @@ class LineController extends Controller
 
     public function auth(Request $request){
         try{
+            session_start();
             $inputs=$request->input();
             $code=$inputs['code'];
             $state=$inputs['state'];
@@ -82,11 +84,11 @@ class LineController extends Controller
                 Log::info('errorMessage:'.$inputs['errorMessage']);
                 return redirect('/loginCancel');
             }
-//            $lineWebLoginState=session($this->lineWebLoginState);
-//            Log::info('$lineWebLoginState:'.$lineWebLoginState);
-//            if ($state!=$lineWebLoginState){
-//                return redirect('/sessionError');
-//            }
+            $lineWebLoginState=session($this->lineWebLoginState);
+            Log::info('$lineWebLoginState:'.$lineWebLoginState);
+            if ($state!=$lineWebLoginState){
+                return redirect('/sessionError');
+            }
             session($this->lineWebLoginState,null);
 
             $curlRes=$this->getAccessToken($code);
@@ -122,6 +124,7 @@ class LineController extends Controller
     }
 
     public function getSuccess(){
+        session_start();
         $accessToken=session($this->accessToken);
         if(empty($accessToken)){
             return redirect('/gotoauthpage');
