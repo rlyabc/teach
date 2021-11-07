@@ -125,28 +125,19 @@ class LineController extends Controller
     }
 
     public function getSuccess(){
-
-        session_start();
-        if(empty($_SESSION[$this->accessToken])){
+        if(empty(session($this->accessToken))){
             return redirect('/gotoauthpage');
         }
-        $accesstoken=$_SESSION[$this->accessToken];
-        $token=json_decode($accesstoken,true);
 
 
-        if(empty($_SESSION[$this->accessToken])){
+        if(empty(session($this->accessToken))){
             return redirect('/');
         }
-//
-//        if(empty($_SESSION[$this->nonce])){
-//            redirect('/');
-//        }
-        $nonce=$_SESSION[$this->nonce];
-        Log::info('$nonce:'.$nonce);
-        Log::info('id_token:'.$token['id_token']);
-        //unset($_SESSION[$this->nonce]);
+        $accesstoken=session($this->accessToken);
+        $token=json_decode($accesstoken,true);
         JWT::$leeway = 60; // $leeway in seconds
-        $idToken = JWT::decode($token['id_token'], $nonce, array('HS256'));
+        $key=$this->channelSecret;
+        $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
         Log::info('id_token1:'.$idToken);
         $idToken =json_decode(json_encode($idToken),true);
         $line_user_id=$idToken['sub'];
@@ -281,7 +272,7 @@ class LineController extends Controller
     //获得audienceGroupid
     public function getAudienceGroupId(){
 
-        $key = "example_key";
+        $key = "1636301370sss";
         $payload = array(
             "iss" => "http://example.org",
             "aud" => "http://example.com",
@@ -290,7 +281,10 @@ class LineController extends Controller
             'dd'=>'sfdsda'
         );
         $jwt = JWT::encode($payload, $key, 'HS256');
+        $jwt='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjY2Vzcy5saW5lLm1lIiwic3ViIjoiVTVhNWZlNjU1MTk5MTNiN2YwMWUyOTQ5N2Y2MTRhN2JjIiwiYXVkIjoiMTY1NjU3NTU1NCIsImV4cCI6MTYzNjMwNDk3NywiaWF0IjoxNjM2MzAxMzc3LCJub25jZSI6IjE2MzYzMDEzNzBzc3MiLCJhbXIiOlsibGluZXNzbyJdLCJuYW1lIjoi5Lu75YeM5LqRIn0.SHLl0dyNrduXlSnehbNe6QwNbwDwcolyE3o401PP2to';
 //        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+        $key=$this->channelSecret;
+
         $decoded = JWT::decode($jwt, $key,array('HS256'));
         print_r($decoded);
 
