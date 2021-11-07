@@ -111,7 +111,7 @@ class LineUsersController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new School);
+        $form = new Form(new LineMessageUser);
 
         $form->text('contents', '发送消息内容');
         return $form;

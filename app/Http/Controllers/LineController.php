@@ -250,7 +250,7 @@ class LineController extends Controller
         );
     }
 
-    
+
 
     public function messageCallback(Request $request){
         $inputs=$request->input();
