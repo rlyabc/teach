@@ -307,16 +307,19 @@ class LineController extends Controller
         Log::info('userId:'.$userId);
         $exist=LineMessageUser::where('message_user_id',$userId)->first();
         if(!$exist){
-            LineMessageUser::create(array(
-                'message_user_id'=>$userId
-            ));
+
              $header=[
                 'Content-Type:application/json',
                 'Authorization: Bearer 4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU='
             ];
             $getProfileUrl="https://api.line.me/v2/bot/profile/".$userId;
             $profileRes=$this->curl($getProfileUrl,false,0,1,$header);
-            Log::info('profileRes:'.json_encode($profileRes));
+            Log::info('profileRes:'.$profileRes);
+            $profileRes=json_decode($profileRes,true);
+            LineMessageUser::create(array(
+                'message_user_id'=>$userId,
+                'name'=>$profileRes['displayName']
+            ));
         }
     }
 
