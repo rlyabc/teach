@@ -33,3 +33,4 @@ Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserI
 Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
 
+Route::get('/message/callback', 'LineController@messageCallback')->name('messageCallback');

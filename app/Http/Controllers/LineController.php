@@ -298,6 +298,11 @@ class LineController extends Controller
         return $response;
     }
 
+    public function messageCallback(Request $request){
+        $inputs=$request->input();
+        Log::info('messageCallback:'.json_encode($inputs));
+    }
+
 
 
 }
