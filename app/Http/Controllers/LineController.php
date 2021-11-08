@@ -51,8 +51,8 @@ class LineController extends Controller
         $nonce =  time().mt_rand(0,9999);
 //        $_SESSION[$this->lineWebLoginState]=$state;
 //        $_SESSION[$this->nonce]=$nonce;
-        Cache::add($this->lineWebLoginState,$state);
-        Cache::add($this->nonce,$nonce);
+        Cache::forever($this->lineWebLoginState,$state);
+        Cache::forever($this->nonce,$nonce);
         $scope="profile%20openid";
         $url="https://access.line.me/oauth2/v2.1/authorize?response_type=code"
             ."&client_id=" .config('services.LineChannelId')
