@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => 'api-auth:api'], function(){
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
     Route::get('/user', 'UserController@userInfo');
     Route::get('/studentUser', 'UserController@studentUserInfo');

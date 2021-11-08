@@ -33,3 +33,4 @@ Route::get('/getUserInfoById', 'UserController@getUserInfoById')->name('getUserI
 Route::get('/getMessageNotifyByReceiveId', 'MessageController@getMessageNotifyByReceiveId')->name('getMessageNotifyByReceiveId');
 
 Route::post('/message/callback', 'LineController@messageCallback')->name('messageCallback');
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
