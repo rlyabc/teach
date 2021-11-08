@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function () {
+    View::addExtension('html','php');
+    return view()->file(public_path().'/index.html');
+});
+
+
 Route::get('/emailVerify', 'TeachController@emailVerify');
+
 Auth::routes();
+
 Route::get('/auth', 'LineController@auth')->name('auth');
 Route::get('/line', 'LineController@getSuccess')->name('success');
 Route::get('/sessionError', 'LineController@getSessionError')->name('session_error');
