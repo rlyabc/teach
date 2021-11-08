@@ -58,5 +58,10 @@ return [
     'LineChannelSecret'=>env('LineChannelSecret'),
     'LineChannelId'=>env('LineChannelId'),
     'LineLoginCallbackUrl'=>env('LineLoginCallbackUrl'),
-    'LineMessageAccessToken'=>env('LineMessageAccessToken')
+    'LineMessageAccessToken'=>env('LineMessageAccessToken'),
+
+    'PushAppId'=>env('PUSHER_APP_ID'),
+    'PushAppKey'=>env('PUSHER_APP_KEY'),
+    'PushAppSecret'=>env('PUSHER_APP_SECRET'),
+    'PushAppCluster'=>env('PUSHER_APP_CLUSTER')
 ];

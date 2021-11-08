@@ -250,7 +250,7 @@ class MessagePusherController extends Controller
 
 
     public function pushMessage($user_id,$messageNotifyCount,$type='teacher'){
-        // 建立socket连接到内部推送端口
+
         try{
             $data = array( 'type'=>$type,'show_num'=>$messageNotifyCount,'is_broadcast'=>0,'uid'=>$user_id);
             broadcast(new MessageSent($user_id, $data,$type));
@@ -280,16 +280,20 @@ class MessagePusherController extends Controller
 
     public function auth(Request $request){
         $channel=$request->channel_name;
-        $socket_id=$request->socket_id;
-        $app_key='07a4dd252d3d733a0c26';
-        $app_sec='379c64bfe31b75beb56e';
-        $app_id='1290170';
-        $pusher=new Pusher($app_key, $app_sec, $app_id, [
-            'cluster' => 'ap1',
+        $socketId=$request->socket_id;
+//        $app_key='07a4dd252d3d733a0c26';
+//        $app_sec='379c64bfe31b75beb56e';
+//        $app_id='1290170';
+        $appKey=config('services.PushAppKey');
+        $appSec=config('services.PushAppSecret');
+        $appId=config('services.PushAppId');
+        $appCluster=config('services.PushAppCluster');
+        $pusher=new Pusher($appKey, $appSec, $appId, [
+            'cluster' => $appCluster,
             'encrypted' => true,
             'useTLS' => false
         ]);
-        return $res=$pusher->socket_auth($channel,$socket_id);
+        return $res=$pusher->socket_auth($channel,$socketId);
     }
 
 
