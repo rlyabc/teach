@@ -96,7 +96,7 @@ class LineController extends Controller
                 return redirect('/sessionError');
             }
 //            unset($_SESSION[$this->lineWebLoginState]);
-            ache::forget($this->lineWebLoginState);
+            Cache::forget($this->lineWebLoginState);
             $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
                 return $curlRes['msg'];
@@ -134,7 +134,7 @@ class LineController extends Controller
 //        session_start();
         $accessToken=Cache::get($this->accessToken);
         if(empty($accessToken)){
-            return redirect('/gotoauthpage');
+            return redirect('/gotoAuthPage');
         }
 //        $accesstoken=$_SESSION[$this->accessToken];
         $token=json_decode($accessToken,true);
