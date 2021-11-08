@@ -52,8 +52,8 @@ class LineController extends Controller
         Cache::forever($this->nonce,$nonce);
         $scope="profile%20openid";
         $url="https://access.line.me/oauth2/v2.1/authorize?response_type=code"
-            ."&client_id=" .config('services.LineChannelId')
-            ."&redirect_uri=".config('services.LineLoginCallbackUrl')
+            ."&client_id=" .config('services.line_channel_id')
+            ."&redirect_uri=".config('services.line_login_callback_url')
             ."&state=".$state
             ."&scope=".$scope
             ."&nonce=".$nonce
@@ -132,7 +132,7 @@ class LineController extends Controller
         $token=json_decode($accessToken,true);
 
         JWT::$leeway = 60; // $leeway in seconds
-        $key=config('services.LineChannelSecret');
+        $key=config('services.line_channel_secret');
         $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
         $idToken =json_decode(json_encode($idToken),true);
         $line_user_id=$idToken['sub'];
@@ -160,9 +160,9 @@ class LineController extends Controller
         $params=[
             'grant_type'=>$this->authorizationCode,
             'code'=>$code,
-            'redirect_uri'=>config('services.LineLoginCallbackUrl'),
-            'client_id'=>config('services.LineChannelId'),
-            'client_secret'=>config('services.LineChannelSecret')
+            'redirect_uri'=>config('services.line_login_callback_url'),
+            'client_id'=>config('services.line_channel_id'),
+            'client_secret'=>config('services.line_channel_secret')
         ];
         $params=http_build_query($params);
        return $curlRes=curl($this->lineBaseUrl,$params,1,1);
@@ -246,7 +246,7 @@ class LineController extends Controller
         Log::info('userId:'.$userId);
         $exist=LineMessageUser::where('message_user_id',$userId)->first();
 //        4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU=
-        $messageAccessToken=config('services.LineMessageAccessToken');
+        $messageAccessToken=config('services.line_message_access_token');
         if(!$exist){
 
              $header=[

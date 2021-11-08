@@ -55,13 +55,13 @@ return [
         'client_secret' => env('Line_SECRET'),
         'redirect' => env('Line_REDIRECT_URI'),
     ],
-    'LineChannelSecret'=>env('LineChannelSecret'),
-    'LineChannelId'=>env('LineChannelId'),
-    'LineLoginCallbackUrl'=>env('LineLoginCallbackUrl'),
-    'LineMessageAccessToken'=>env('LineMessageAccessToken'),
+    'line_channel_secret'=>env('LineChannelSecret'),
+    'line_channel_id'=>env('LineChannelId'),
+    'line_login_callback_url'=>env('LineLoginCallbackUrl'),
+    'line_message_access_token'=>env('LineMessageAccessToken'),
 
-    'PushAppId'=>env('PUSHER_APP_ID'),
-    'PushAppKey'=>env('PUSHER_APP_KEY'),
-    'PushAppSecret'=>env('PUSHER_APP_SECRET'),
-    'PushAppCluster'=>env('PUSHER_APP_CLUSTER')
+    'push_app_id'=>env('PUSHER_APP_ID'),
+    'push_app_key'=>env('PUSHER_APP_KEY'),
+    'push_app_secret'=>env('PUSHER_APP_SECRET'),
+    'push_app_cluster'=>env('PUSHER_APP_CLUSTER')
 ];

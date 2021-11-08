@@ -284,10 +284,10 @@ class MessagePusherController extends Controller
 //        $app_key='07a4dd252d3d733a0c26';
 //        $app_sec='379c64bfe31b75beb56e';
 //        $app_id='1290170';
-        $appKey=config('services.PushAppKey');
-        $appSec=config('services.PushAppSecret');
-        $appId=config('services.PushAppId');
-        $appCluster=config('services.PushAppCluster');
+        $appKey=config('services.push_app_key');
+        $appSec=config('services.push_app_secret');
+        $appId=config('services.push_app_id');
+        $appCluster=config('services.push_app_cluster');
         $pusher=new Pusher($appKey, $appSec, $appId, [
             'cluster' => $appCluster,
             'encrypted' => true,
