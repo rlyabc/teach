@@ -39,7 +39,7 @@ class Student extends Authenticatable
         return $this->where('name', $login)->first();
     }
 
-    function follow()
+    public function follow()
     {
         return $this->belongsToMany('App\User', 'follows', 'student_id','user_id');
     }
