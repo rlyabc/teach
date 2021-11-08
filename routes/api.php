@@ -49,7 +49,7 @@ Route::group(['middleware' => 'api-auth:api'], function(){
     Route::get('/getFollowDataByStudentId', 'TeachController@getFollowDataByStudentId');
     Route::post('/follow', 'TeachController@follow');
 
-    Route::post('/logout', 'Auth\LoginController@logout');
+
 
 });
 
@@ -70,7 +70,7 @@ Route::post('/register', 'Auth\RegisterController@index');
 
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/studentLogin', 'Auth\LoginController@studentLogin');
-
+Route::post('/logout', 'Auth\LoginController@logout');
 
 Route::post('/lineBind', 'LineController@lineBind')->name('lineBind');
 
