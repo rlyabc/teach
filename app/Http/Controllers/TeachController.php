@@ -352,7 +352,7 @@ class TeachController extends Controller
         $follow_user_id=$request->input('user_id');
         $status=$request->input('status');
         $user_id=Auth::id();
-        $student = Student::where('id',$user_id)->find(1);
+        $student = Student::where('id',$user_id)->first();
         if($status){
             $student->follow()->attach($follow_user_id);
             return array(
