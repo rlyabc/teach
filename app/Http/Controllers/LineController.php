@@ -46,11 +46,13 @@ class LineController extends Controller
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
     public function gotoAuthPage(){
-        session_start();
+//        session_start();
         $state = time().mt_rand(0,9999);
         $nonce =  time().mt_rand(0,9999);
-        $_SESSION[$this->lineWebLoginState]=$state;
-        $_SESSION[$this->nonce]=$nonce;
+//        $_SESSION[$this->lineWebLoginState]=$state;
+//        $_SESSION[$this->nonce]=$nonce;
+        Cache::put($this->lineWebLoginState,$state);
+        Cache::put($this->nonce,$nonce);
         $scope="profile%20openid";
         $url="https://access.line.me/oauth2/v2.1/authorize?response_type=code"
             ."&client_id=" .config('services.LineChannelId')
@@ -65,7 +67,7 @@ class LineController extends Controller
 
     public function auth(Request $request){
         try{
-            session_start();
+            //session_start();
             $inputs=$request->input();
             $code=$inputs['code'];
             $state=$inputs['state'];
@@ -87,11 +89,14 @@ class LineController extends Controller
                 Log::info('errorMessage:'.$inputs['errorMessage']);
                 return redirect('/loginCancel');
             }
-            if (isset($_SESSION[$this->lineWebLoginState])&&$state!=$_SESSION[$this->lineWebLoginState]){
+//            if (isset($_SESSION[$this->lineWebLoginState])&&$state!=$_SESSION[$this->lineWebLoginState]){
+//                return redirect('/sessionError');
+//            }
+            if ($state!=Cache::get($this->lineWebLoginState)){
                 return redirect('/sessionError');
             }
-            unset($_SESSION[$this->lineWebLoginState]);
-
+//            unset($_SESSION[$this->lineWebLoginState]);
+            ache::forget($this->lineWebLoginState);
             $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
                 return $curlRes['msg'];
@@ -126,16 +131,14 @@ class LineController extends Controller
 
     public function getSuccess(){
 
-        session_start();
-        if(empty($_SESSION[$this->accessToken])){
+//        session_start();
+        $accessToken=Cache::get($this->accessToken);
+        if(empty($accessToken)){
             return redirect('/gotoauthpage');
         }
-        $accesstoken=$_SESSION[$this->accessToken];
-        $token=json_decode($accesstoken,true);
+//        $accesstoken=$_SESSION[$this->accessToken];
+        $token=json_decode($accessToken,true);
 
-        if(empty($_SESSION[$this->accessToken])){
-            return redirect('/');
-        }
         JWT::$leeway = 60; // $leeway in seconds
         $key=config('services.LineChannelSecret');
         $idToken = JWT::decode($token['id_token'], $key, array('HS256'));
@@ -169,8 +172,6 @@ class LineController extends Controller
             'client_id'=>config('services.LineChannelId'),
             'client_secret'=>config('services.LineChannelSecret')
         ];
-//        $client=new Client();
-//      return  $client->request('POST',$this->lineBaseUrl,$params);
         $params=http_build_query($params);
        return $curlRes=curl($this->lineBaseUrl,$params,1,1);
 
