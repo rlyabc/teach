@@ -92,7 +92,9 @@ class LineController extends Controller
 //            if (isset($_SESSION[$this->lineWebLoginState])&&$state!=$_SESSION[$this->lineWebLoginState]){
 //                return redirect('/sessionError');
 //            }
-            if ($state!=Cache::get($this->lineWebLoginState)){
+            $lineWebLoginState=Cache::get($this->lineWebLoginState);
+            if ($state!=$lineWebLoginState){
+                Log::info('$lineWebLoginState:'.$lineWebLoginState);
                 return redirect('/sessionError');
             }
 //            unset($_SESSION[$this->lineWebLoginState]);
