@@ -145,7 +145,7 @@ class LineUsersController extends Controller
                 )
             ]
         ];
-        $messageAccessToken=config('services.LineMessageAccessToken');
+        $messageAccessToken=config('services.line_message_access_token');
 //        $messageAccessToken='4haMb+fjavg5PA+9fBHOxqrEFVLTzhKEL6bX3BxdyPPvH/lVUuNP3KAkDQDF70LECwjRwgeQHpB4vl/W7i9YiC92idVKSxmQJm/rVGYm6qz24OQIK5qvsS+k3VlrFdTXgqKDlRQWGzAuLbwqfrlvmAdB04t89/1O/w1cDnyilFU=';
         $header=[
             'Content-Type:application/json',
