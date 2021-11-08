@@ -121,7 +121,13 @@ class LineUsersController extends Controller
         $contents=$request->input('contents');
         $users=LineMessageUser::where('id',$id)->first();
         $this->sendMessageToLineUser($users['message_user_id'],$contents);
-        $contents=array_merge(json_decode($users['contents'],true),array($contents));
+        $existContent=json_decode($users['contents'],true);
+        if($existContent){
+            $contents=array_merge(json_decode($users['contents'],true),array($contents));
+        }else{
+            $contents=array($contents);
+        }
+        
         LineMessageUser::where('id',$id)->update(array(
             'contents'=>json_encode($contents,JSON_UNESCAPED_UNICODE)
         ));
