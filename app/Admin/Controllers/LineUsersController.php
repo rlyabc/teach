@@ -127,7 +127,7 @@ class LineUsersController extends Controller
         }else{
             $contents=array($contents);
         }
-        
+
         LineMessageUser::where('id',$id)->update(array(
             'contents'=>json_encode($contents,JSON_UNESCAPED_UNICODE)
         ));
