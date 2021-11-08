@@ -108,7 +108,8 @@ class LineController extends Controller
                 throw new \Exception('获取token失败');
             }
             Log::info('tokennnnn:'.$token);
-            $_SESSION[$this->accessToken]=$token;
+//            $_SESSION[$this->accessToken]=$token;
+            Cache::forever($this->accessToken,$token);
             return redirect('/line');
         }catch (\Exception $exception){
             return array(
@@ -138,6 +139,7 @@ class LineController extends Controller
         if(empty($accessToken)){
             return redirect('/gotoAuthPage');
         }
+        Cache::forget($this->accessToken);
 //        $accesstoken=$_SESSION[$this->accessToken];
         $token=json_decode($accessToken,true);
 
