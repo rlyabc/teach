@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => 'api-auth:api'], function(){
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+    Route::get('/user', 'UserController@userInfo');
+    Route::get('/studentUser', 'UserController@studentUserInfo');
+
     Route::post('/addTeacher', 'TeachController@addTeacher');
     Route::post('/addSchool', 'TeachController@addSchool');
     Route::post('/addStudent', 'TeachController@addStudent');
@@ -44,33 +49,31 @@ Route::group(['middleware' => 'api-auth:api'], function(){
     Route::get('/getFollowDataByStudentId', 'TeachController@getFollowDataByStudentId');
     Route::post('/follow', 'TeachController@follow');
 
-
+    Route::post('/logout', 'Auth\LoginController@logout');
 
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return array(
-        'code'=>200,
-        'data'=>$request->user()
-    );
-});
-
-Route::middleware('auth:student_api')->get('/student_user', function (Request $request) {
-    return array(
-        'code'=>200,
-        'data'=>$request->user()
-    );
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return array(
+//        'code'=>200,
+//        'data'=>$request->user()
+//    );
+//});
+//
+//Route::middleware('auth:student_api')->get('/student_user', function (Request $request) {
+//    return array(
+//        'code'=>200,
+//        'data'=>$request->user()
+//    );
+//});
 Route::post('/register', 'Auth\RegisterController@index');
 
 Route::post('/login', 'Auth\LoginController@login');
 Route::post('/studentLogin', 'Auth\LoginController@studentLogin');
 
-Route::post('/logout', 'Auth\LoginController@logout');
-Route::post('/logout2', 'Auth\LoginController@logout2');
+
 Route::post('/lineBind', 'LineController@lineBind')->name('lineBind');
 
-
-Route::post('/push/auth', 'MessagePusherController@auth')->name('auth');
+//Route::post('/push/auth', 'MessagePusherController@auth')->name('auth');
 
 

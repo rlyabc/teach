@@ -46,11 +46,8 @@ class LineController extends Controller
     protected $lineBaseUrl='https://api.line.me/oauth2/v2.1/token';
 
     public function gotoAuthPage(){
-//        session_start();
         $state = time().mt_rand(0,9999);
         $nonce =  time().mt_rand(0,9999);
-//        $_SESSION[$this->lineWebLoginState]=$state;
-//        $_SESSION[$this->nonce]=$nonce;
         Cache::forever($this->lineWebLoginState,$state);
         Cache::forever($this->nonce,$nonce);
         $scope="profile%20openid";
@@ -67,7 +64,6 @@ class LineController extends Controller
 
     public function auth(Request $request){
         try{
-            //session_start();
             $inputs=$request->input();
             $code=$inputs['code'];
             $state=$inputs['state'];
@@ -89,15 +85,11 @@ class LineController extends Controller
                 Log::info('errorMessage:'.$inputs['errorMessage']);
                 return redirect('/loginCancel');
             }
-//            if (isset($_SESSION[$this->lineWebLoginState])&&$state!=$_SESSION[$this->lineWebLoginState]){
-//                return redirect('/sessionError');
-//            }
             $lineWebLoginState=Cache::get($this->lineWebLoginState);
             if ($state!=$lineWebLoginState){
                 Log::info('$lineWebLoginState:'.$lineWebLoginState);
                 return redirect('/sessionError');
             }
-//            unset($_SESSION[$this->lineWebLoginState]);
             Cache::forget($this->lineWebLoginState);
             $curlRes=$this->getAccessToken($code);
             if(!empty($curlRes['code'])){
@@ -108,7 +100,6 @@ class LineController extends Controller
                 throw new \Exception('获取token失败');
             }
             Log::info('tokennnnn:'.$token);
-//            $_SESSION[$this->accessToken]=$token;
             Cache::forever($this->accessToken,$token);
             return redirect('/line');
         }catch (\Exception $exception){
@@ -133,14 +124,11 @@ class LineController extends Controller
     }
 
     public function getSuccess(){
-
-//        session_start();
         $accessToken=Cache::get($this->accessToken);
         if(empty($accessToken)){
             return redirect('/gotoAuthPage');
         }
         Cache::forget($this->accessToken);
-//        $accesstoken=$_SESSION[$this->accessToken];
         $token=json_decode($accessToken,true);
 
         JWT::$leeway = 60; // $leeway in seconds

@@ -19,6 +19,26 @@ use mysql_xdevapi\Exception;
 
 class UserController extends Controller
 {
+    public function userInfo(Request $request){
+        return array(
+            'code'=>200,
+            'data'=>$request->user()
+        );
+    }
+
+    public function studentUserInfo(Request $request){
+        return array(
+            'code'=>200,
+            'data'=>$request->user()
+        );
+    }
+
+    public function index(Request $request){
+        return array(
+            'code'=>200,
+            'data'=>$request->user()
+        );
+    }
     public function getUserInfoById(Request $request){
         $uid=$request->input('uid');
         $type=$request->input('type');
